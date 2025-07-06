@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ModelBrowseView: View {
+struct BrowseView: View {
     @StateObject private var viewModel = BrowseViewModel()
 
     var body: some View {
@@ -57,5 +57,5 @@ struct ModelBrowseView: View {
 }
 
 #Preview {
-    ModelBrowseView()
+    BrowseView()
 }

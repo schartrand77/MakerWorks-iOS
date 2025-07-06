@@ -1,61 +1,55 @@
 //
-//  BrowseView.swift
+//  BrowseViewModel.swift
 //  MakerWorks
 //
 //  Created by Stephen Chartrand on 2025-07-06.
 //
 
-import SwiftUI
+import Foundation
+import Combine
 
-struct BrowseView: View {
-    @StateObject private var viewModel = BrowseViewModel()
+final class BrowseViewModel: ObservableObject {
+    @Published var models: [Model] = []
+    @Published var isLoading: Bool = false
+    @Published var errorMessage: String?
 
-    var body: some View {
-        NavigationView {
-            VStack {
-                if viewModel.isLoading {
-                    ProgressView("Loading models…")
-                        .progressViewStyle(CircularProgressViewStyle())
-                } else if let error = viewModel.errorMessage {
-                    Text("Error: \(error)")
-                        .foregroundColor(.red)
-                        .padding()
-                } else {
-                    List(viewModel.models) { model in
-                        VStack(alignment: .leading, spacing: 4) {
-                            Text(model.name)
-                                .font(.headline)
+    private var cancellables = Set<AnyCancellable>()
+    private let client: NetworkClient
 
-                            if let description = model.description {
-                                Text(description)
-                                    .font(.subheadline)
-                                    .foregroundColor(.secondary)
-                            }
-
-                            HStack {
-                                Text("Uploader: \(model.uploader)")
-                                    .font(.caption)
-                                    .foregroundColor(.gray)
-
-                                Spacer()
-
-                                Text(viewModel.formatDate(model.uploadedAt))
-                                    .font(.caption)
-                                    .foregroundColor(.gray)
-                            }
-                        }
-                        .padding(.vertical, 4)
-                    }
-                }
-            }
-            .navigationTitle("Browse Models")
-            .onAppear {
-                viewModel.fetchModels()
-            }
-        }
+    init(client: NetworkClient = DefaultNetworkClient.shared) {
+        self.client = client
     }
-}
 
-#Preview {
-    BrowseView()
+    /// Fetches all uploaded models from the API
+    func fetchModels() {
+        self.isLoading = true
+        self.errorMessage = nil
+
+        client.request(.listModels)
+            .receive(on: DispatchQueue.main)
+            .sink(receiveCompletion: { completion in
+                self.isLoading = false
+                switch completion {
+                case .failure(let error):
+                    self.errorMessage = error.localizedDescription
+                case .finished:
+                    break
+                }
+            }, receiveValue: { (response: [Model]) in
+                self.models = response
+            })
+            .store(in: &cancellables)
+    }
+
+    /// Formats a date string into a short date
+    func formatDate(_ isoDate: String) -> String {
+        let formatter = ISO8601DateFormatter()
+        if let date = formatter.date(from: isoDate) {
+            let outputFormatter = DateFormatter()
+            outputFormatter.dateStyle = .medium
+            outputFormatter.timeStyle = .none
+            return outputFormatter.string(from: date)
+        }
+        return isoDate
+    }
 }
