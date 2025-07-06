@@ -35,8 +35,7 @@ struct LoginView: View {
                     Text("Sign in with MakerWorks")
                         .frame(maxWidth: .infinity)
                         .padding()
-                        .background(.ultraThinMaterial)
-                        .cornerRadius(12)
+                        .liquidGlass()
                         .overlay(
                             RoundedRectangle(cornerRadius: 12)
                                 .stroke(.blue, lineWidth: 1)

@@ -54,10 +54,7 @@ struct FilamentPickerView: View {
                 .font(.footnote)
                 .foregroundColor(.gray)
         }
-        .padding()
-        .background(.ultraThinMaterial)
-        .cornerRadius(12)
-        .shadow(radius: 1)
+        .liquidGlass()
     }
 
     private func toggleColor(_ color: String) {

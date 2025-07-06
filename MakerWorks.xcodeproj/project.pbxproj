@@ -7,7 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-               4C9F23D52E1B1DB5007B3C2D /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 4C9F23D42E1B1DB2007B3C2D /* README.md */; };
+		4C9F23D32E1B1DA3007B3C2D /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4C9F23D22E1B1DA0007B3C2D /* Info.plist */; };
+		4C9F23D52E1B1DB5007B3C2D /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 4C9F23D42E1B1DB2007B3C2D /* README.md */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -293,7 +294,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-                               4C9F23D52E1B1DB5007B3C2D /* README.md in Resources */,
+				4C9F23D32E1B1DA3007B3C2D /* Info.plist in Resources */,
+				4C9F23D52E1B1DB5007B3C2D /* README.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
