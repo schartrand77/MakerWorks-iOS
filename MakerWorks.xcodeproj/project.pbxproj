@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4C9F23D12E1B1D8D007B3C2D /* MakerWorksApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9F23D02E1B1D82007B3C2D /* MakerWorksApp.swift */; };
 		4C9F23D32E1B1DA3007B3C2D /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4C9F23D22E1B1DA0007B3C2D /* Info.plist */; };
 		4C9F23D52E1B1DB5007B3C2D /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 4C9F23D42E1B1DB2007B3C2D /* README.md */; };
 /* End PBXBuildFile section */
@@ -33,7 +32,6 @@
 		4C9F23562E1B14B5007B3C2D /* MakerWorks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MakerWorks.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C9F23632E1B14B6007B3C2D /* MakerWorksTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MakerWorksTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C9F236D2E1B14B6007B3C2D /* MakerWorksUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MakerWorksUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		4C9F23D02E1B1D82007B3C2D /* MakerWorksApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakerWorksApp.swift; sourceTree = "<group>"; };
 		4C9F23D22E1B1DA0007B3C2D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		4C9F23D42E1B1DB2007B3C2D /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -121,7 +119,6 @@
 			children = (
 				4C9F23D42E1B1DB2007B3C2D /* README.md */,
 				4C9F23D22E1B1DA0007B3C2D /* Info.plist */,
-				4C9F23D02E1B1D82007B3C2D /* MakerWorksApp.swift */,
 				4C9F23862E1B15B2007B3C2D /* Tests */,
 				4C9F23852E1B15A4007B3C2D /* Resources */,
 				4C9F23842E1B158F007B3C2D /* Utils */,
@@ -299,7 +296,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4C9F23D12E1B1D8D007B3C2D /* MakerWorksApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
