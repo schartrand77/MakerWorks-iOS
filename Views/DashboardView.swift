@@ -42,6 +42,7 @@ struct DashboardView: View {
                     }
                 }
                 .listStyle(InsetGroupedListStyle())
+                .liquidGlass()
 
                 Spacer()
             }

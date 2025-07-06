@@ -22,6 +22,7 @@ final class EstimateViewModel: ObservableObject {
     @Published var filamentColors: [String] = []
     @Published var printProfile: String = "standard"
     @Published var customText: String = ""
+    @Published var modelID: Int = 1
 
     // Outputs
     @Published var estimateResult: EstimateResult?
@@ -71,7 +72,7 @@ final class EstimateViewModel: ObservableObject {
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
 
         let payload: [String: Any] = [
-            "model_id": 1, // TODO: replace with real model_id
+            "model_id": modelID,
             "x_mm": x_mm,
             "y_mm": y_mm,
             "z_mm": z_mm,

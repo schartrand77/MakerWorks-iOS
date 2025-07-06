@@ -44,8 +44,11 @@ struct BrowseView: View {
                                     .foregroundColor(.gray)
                             }
                         }
-                        .padding(.vertical, 4)
+                        .liquidGlass()
+                        .listRowSeparator(.hidden)
+                        .listRowBackground(Color.clear)
                     }
+                    .listStyle(PlainListStyle())
                 }
             }
             .navigationTitle("Browse Models")

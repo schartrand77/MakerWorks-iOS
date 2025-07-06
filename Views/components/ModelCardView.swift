@@ -60,10 +60,7 @@ struct ModelCardView: View {
                 }
             }
         }
-        .padding()
-        .background(.ultraThinMaterial)
-        .cornerRadius(12)
-        .shadow(radius: 1)
+        .liquidGlass()
     }
 
     /// Helper to format ISO8601 date string
