@@ -23,3 +23,6 @@ To run the tests from the command line:
 ```sh
 xcodebuild -scheme MakerWorks -destination 'platform=iOS Simulator,name=iPhone 15' test
 ```
+
+## License
+This project is available under the [MIT License](LICENSE).
