@@ -21,7 +21,11 @@ final class DefaultNetworkClient: NetworkClient {
         authenticator: Authenticator.shared
     )
 
-    private let baseURL: URL
+    /// Base API endpoint used when constructing requests
+    ///
+    /// This is exposed so that other modules can build URLs or requests
+    /// without needing to duplicate the base URL string.
+    let baseURL: URL
     private let session: URLSession
     private let authenticator: Authenticator
 
