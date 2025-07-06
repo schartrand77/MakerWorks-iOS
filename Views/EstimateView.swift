@@ -32,7 +32,7 @@ struct EstimateView: View {
                                 .textFieldStyle(.roundedBorder)
                         }
                     }
-                    .padding()
+                    .liquidGlass()
 
                     // Filament Picker
                     FilamentPickerView(
@@ -55,6 +55,7 @@ struct EstimateView: View {
                         .pickerStyle(SegmentedPickerStyle())
                         .padding(.horizontal)
                     }
+                    .liquidGlass()
 
                     // Custom Text
                     VStack {
@@ -64,6 +65,7 @@ struct EstimateView: View {
                             .textFieldStyle(.roundedBorder)
                             .padding(.horizontal)
                     }
+                    .liquidGlass()
 
                     // Estimate Button
                     if viewModel.isLoading {
@@ -90,9 +92,7 @@ struct EstimateView: View {
                             Text("Estimated Cost: $\(String(format: "%.2f", estimate.estimatedCostUSD))")
                                 .font(.headline)
                         }
-                        .padding()
-                        .background(.ultraThinMaterial)
-                        .cornerRadius(12)
+                        .liquidGlass()
                     }
 
                     if let error = viewModel.errorMessage {

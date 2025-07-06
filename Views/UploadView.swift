@@ -26,8 +26,7 @@ struct UploadView: View {
                     Text(viewModel.selectedFileName == nil ? "Choose STL File" : "Change File")
                         .frame(maxWidth: .infinity)
                         .padding()
-                        .background(.ultraThinMaterial)
-                        .cornerRadius(12)
+                        .liquidGlass()
                         .overlay(
                             RoundedRectangle(cornerRadius: 12)
                                 .stroke(.blue, lineWidth: 1)
