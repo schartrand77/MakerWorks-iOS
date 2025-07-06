@@ -36,6 +36,23 @@
 		4C9F23D42E1B1DB2007B3C2D /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		4C9F24A92E1B36D4007B3C2D /* Exceptions for "Tests" folder in "MakerWorksTests" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				MakerWorksTests/EstimateViewModelTests.swift,
+			);
+			target = 4C9F23622E1B14B6007B3C2D /* MakerWorksTests */;
+		};
+		4C9F24AA2E1B36F1007B3C2D /* Exceptions for "Tests" folder in "MakerWorks" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				MakerWorksTests/EstimateViewModelTests.swift,
+			);
+			target = 4C9F23552E1B14B5007B3C2D /* MakerWorks */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		4C9F23582E1B14B5007B3C2D /* MakerWorks */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
@@ -74,6 +91,10 @@
 		};
 		4C9F23862E1B15B2007B3C2D /* Tests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				4C9F24AA2E1B36F1007B3C2D /* Exceptions for "Tests" folder in "MakerWorks" target */,
+				4C9F24A92E1B36D4007B3C2D /* Exceptions for "Tests" folder in "MakerWorksTests" target */,
+			);
 			path = Tests;
 			sourceTree = "<group>";
 		};
@@ -253,6 +274,9 @@
 			);
 			mainGroup = 4C9F234D2E1B14B5007B3C2D;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				4C9F24A72E1B36C2007B3C2D /* XCRemoteSwiftPackageReference "swift-async-algorithms" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 4C9F23572E1B14B5007B3C2D /* Products */;
 			projectDirPath = "";
@@ -456,8 +480,8 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_PREVIEWS = YES;
-                               GENERATE_INFOPLIST_FILE = NO;
-                               INFOPLIST_FILE = Info.plist;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -479,8 +503,8 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_PREVIEWS = YES;
-                               GENERATE_INFOPLIST_FILE = NO;
-                               INFOPLIST_FILE = Info.plist;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -602,6 +626,17 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		4C9F24A72E1B36C2007B3C2D /* XCRemoteSwiftPackageReference "swift-async-algorithms" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/apple/swift-async-algorithms.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.4;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
 	};
 	rootObject = 4C9F234E2E1B14B5007B3C2D /* Project object */;
 }
