@@ -17,7 +17,7 @@ protocol NetworkClient {
 /// Default implementation of the NetworkClient
 final class DefaultNetworkClient: NetworkClient {
     static let shared = DefaultNetworkClient(
-        baseURL: URL(string: "https://your-api-domain.com")!,
+        baseURL: URL(string: "https://api.makerworks.app")!,
         authenticator: Authenticator.shared
     )
 

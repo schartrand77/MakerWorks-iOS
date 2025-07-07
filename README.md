@@ -2,6 +2,8 @@
 
 MakerWorks-iOS is a SwiftUI application for interacting with the MakerWorks service. The project contains network clients, view models, and views for authentication, browsing models, requesting estimates, and uploading prints.
 
+The app communicates with the MakerWorks backend at `https://api.makerworks.app` by default. Update `DefaultNetworkClient` if you need to target a different API host.
+
 ## Prerequisites
 - macOS with [Xcode](https://developer.apple.com/xcode/) **16.3** or later
 - A valid Apple development account to run on devices
