@@ -32,6 +32,8 @@ To distribute beta builds via TestFlight:
 4. Upload the archive from the Organizer to App Store Connect.
 5. Once processing is complete, add testers and distribute the build through TestFlight.
 
+
+Testers should install the TestFlight app from the App Store and accept the invitation with their Apple ID. Beta builds expire after 90 days.
 You'll need a distribution provisioning profile (or automatic signing) to upload archives, and any development devices must be registered with your Apple developer team.
 
 ## License
