@@ -24,5 +24,15 @@ To run the tests from the command line:
 xcodebuild -scheme MakerWorks -destination 'platform=iOS Simulator,name=iPhone 15' test
 ```
 
+## Beta Testing
+To distribute beta builds via TestFlight:
+1. In Xcode, select the Release configuration and choose **Any iOS Device (arm64)** as the run destination.
+2. Choose **Product > Archive** to generate an archive of the app.
+3. Create an App Store Connect record for the bundle identifier or add a new version if one already exists.
+4. Upload the archive from the Organizer to App Store Connect.
+5. Once processing is complete, add testers and distribute the build through TestFlight.
+
+You'll need a distribution provisioning profile (or automatic signing) to upload archives, and any development devices must be registered with your Apple developer team.
+
 ## License
 This project is available under the [MIT License](LICENSE).
