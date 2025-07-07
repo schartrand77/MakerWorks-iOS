@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Security
 
 /// Responsible for storing and retrieving authentication tokens and user info
 final class TokenStorage {
@@ -13,29 +14,60 @@ final class TokenStorage {
 
     private let defaults = UserDefaults.standard
 
+    private let service = "MakerWorksTokenStorage"
+
     private let tokenKey = "accessToken"
     private let emailKey = "userEmail"
     private let usernameKey = "username"
     private let groupsKey = "userGroups"
 
-    private init() {}
+    private let migrationKey = "TokenStorageMigrated"
+
+    private init() {
+        migrateIfNeeded()
+    }
+
+    // MARK: - Migration
+
+    private func migrateIfNeeded() {
+        guard !defaults.bool(forKey: migrationKey) else { return }
+
+        if let token = defaults.string(forKey: tokenKey) {
+            saveToken(token)
+            defaults.removeObject(forKey: tokenKey)
+        }
+        if let email = defaults.string(forKey: emailKey) {
+            saveEmail(email)
+            defaults.removeObject(forKey: emailKey)
+        }
+        if let username = defaults.string(forKey: usernameKey) {
+            saveUsername(username)
+            defaults.removeObject(forKey: usernameKey)
+        }
+        if let groups = defaults.string(forKey: groupsKey) {
+            saveGroups(groups)
+            defaults.removeObject(forKey: groupsKey)
+        }
+
+        defaults.set(true, forKey: migrationKey)
+    }
 
     // MARK: - Save
 
     func saveToken(_ token: String) {
-        defaults.set(token, forKey: tokenKey)
+        saveKeychainValue(token, for: tokenKey)
     }
 
     func saveEmail(_ email: String) {
-        defaults.set(email, forKey: emailKey)
+        saveKeychainValue(email, for: emailKey)
     }
 
     func saveUsername(_ username: String) {
-        defaults.set(username, forKey: usernameKey)
+        saveKeychainValue(username, for: usernameKey)
     }
 
     func saveGroups(_ groups: String) {
-        defaults.set(groups, forKey: groupsKey)
+        saveKeychainValue(groups, for: groupsKey)
     }
 
     func saveAll(token: String, email: String, username: String, groups: String?) {
@@ -50,27 +82,67 @@ final class TokenStorage {
     // MARK: - Get
 
     func getToken() -> String? {
-        defaults.string(forKey: tokenKey)
+        getKeychainValue(for: tokenKey)
     }
 
     func getEmail() -> String? {
-        defaults.string(forKey: emailKey)
+        getKeychainValue(for: emailKey)
     }
 
     func getUsername() -> String? {
-        defaults.string(forKey: usernameKey)
+        getKeychainValue(for: usernameKey)
     }
 
     func getGroups() -> String? {
-        defaults.string(forKey: groupsKey)
+        getKeychainValue(for: groupsKey)
     }
 
     // MARK: - Clear
 
     func clear() {
-        defaults.removeObject(forKey: tokenKey)
-        defaults.removeObject(forKey: emailKey)
-        defaults.removeObject(forKey: usernameKey)
-        defaults.removeObject(forKey: groupsKey)
+        deleteKeychainValue(for: tokenKey)
+        deleteKeychainValue(for: emailKey)
+        deleteKeychainValue(for: usernameKey)
+        deleteKeychainValue(for: groupsKey)
+    }
+
+    // MARK: - Keychain Helpers
+
+    private func keychainQuery(for key: String) -> [String: Any] {
+        [
+            kSecClass as String: kSecClassGenericPassword,
+            kSecAttrAccount as String: key,
+            kSecAttrService as String: service
+        ]
+    }
+
+    private func saveKeychainValue(_ value: String, for key: String) {
+        var query = keychainQuery(for: key)
+        let data = Data(value.utf8)
+
+        if SecItemCopyMatching(query as CFDictionary, nil) == errSecSuccess {
+            let attributes = [kSecValueData as String: data]
+            SecItemUpdate(query as CFDictionary, attributes as CFDictionary)
+        } else {
+            query[kSecValueData as String] = data
+            query[kSecAttrAccessible as String] = kSecAttrAccessibleAfterFirstUnlock
+            SecItemAdd(query as CFDictionary, nil)
+        }
+    }
+
+    private func getKeychainValue(for key: String) -> String? {
+        var query = keychainQuery(for: key)
+        query[kSecReturnData as String] = kCFBooleanTrue
+        query[kSecMatchLimit as String] = kSecMatchLimitOne
+
+        var dataRef: AnyObject?
+        let status = SecItemCopyMatching(query as CFDictionary, &dataRef)
+        guard status == errSecSuccess, let data = dataRef as? Data else { return nil }
+        return String(data: data, encoding: .utf8)
+    }
+
+    private func deleteKeychainValue(for key: String) {
+        let query = keychainQuery(for: key)
+        SecItemDelete(query as CFDictionary)
     }
 }
