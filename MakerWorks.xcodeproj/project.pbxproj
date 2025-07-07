@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4C9F23D32E1B1DA3007B3C2D /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4C9F23D22E1B1DA0007B3C2D /* Info.plist */; };
 		4C9F23D52E1B1DB5007B3C2D /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 4C9F23D42E1B1DB2007B3C2D /* README.md */; };
 /* End PBXBuildFile section */
 
@@ -29,83 +28,37 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		4C9F23562E1B14B5007B3C2D /* MakerWorks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MakerWorks.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		4C9F23632E1B14B6007B3C2D /* MakerWorksTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MakerWorksTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		4C9F236D2E1B14B6007B3C2D /* MakerWorksUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MakerWorksUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		4C9F23D22E1B1DA0007B3C2D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		4C9F23562E1B14B5007B3C2D /* MakerWorks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = MakerWorks.app; path = "/Users/stephenchartrand/Documents/GitHub/MakerWorks/build/Debug-iphoneos/MakerWorks.app"; sourceTree = "<absolute>"; };
+		4C9F23632E1B14B6007B3C2D /* MakerWorksTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = MakerWorksTests.xctest; path = "/Users/stephenchartrand/Documents/GitHub/MakerWorks/build/Debug-iphoneos/MakerWorks.app/PlugIns/MakerWorksTests.xctest"; sourceTree = "<absolute>"; };
+		4C9F236D2E1B14B6007B3C2D /* MakerWorksUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = MakerWorksUITests.xctest; path = "/Users/stephenchartrand/Documents/GitHub/MakerWorks/build/Debug-iphoneos/MakerWorksUITests-Runner.app/PlugIns/MakerWorksUITests.xctest"; sourceTree = "<absolute>"; };
 		4C9F23D42E1B1DB2007B3C2D /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		4C9F24A92E1B36D4007B3C2D /* Exceptions for "Tests" folder in "MakerWorksTests" target */ = {
+		4CDBFA4F2E1BEDF1006C8620 /* Exceptions for "Sources" folder in "MakerWorks" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
-				MakerWorksTests/EstimateViewModelTests.swift,
-			);
-			target = 4C9F23622E1B14B6007B3C2D /* MakerWorksTests */;
-		};
-		4C9F24AA2E1B36F1007B3C2D /* Exceptions for "Tests" folder in "MakerWorks" target */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				MakerWorksTests/EstimateViewModelTests.swift,
+				Tests/MakerWorksTests/EstimateViewModelTests.swift,
 			);
 			target = 4C9F23552E1B14B5007B3C2D /* MakerWorks */;
+		};
+		4CDBFA502E1BEDF1006C8620 /* Exceptions for "Sources" folder in "MakerWorksTests" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Tests/MakerWorksTests/EstimateViewModelTests.swift,
+			);
+			target = 4C9F23622E1B14B6007B3C2D /* MakerWorksTests */;
 		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		4C9F23582E1B14B5007B3C2D /* MakerWorks */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = MakerWorks;
-			sourceTree = "<group>";
-		};
-		4C9F23662E1B14B6007B3C2D /* MakerWorksTests */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = MakerWorksTests;
-			sourceTree = "<group>";
-		};
-		4C9F23702E1B14B6007B3C2D /* MakerWorksUITests */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = MakerWorksUITests;
-			sourceTree = "<group>";
-		};
-		4C9F23822E1B1564007B3C2D /* ViewModels */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = ViewModels;
-			sourceTree = "<group>";
-		};
-		4C9F23832E1B1575007B3C2D /* Networking */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = Networking;
-			sourceTree = "<group>";
-		};
-		4C9F23842E1B158F007B3C2D /* Utils */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = Utils;
-			sourceTree = "<group>";
-		};
-		4C9F23852E1B15A4007B3C2D /* Resources */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = Resources;
-			sourceTree = "<group>";
-		};
-		4C9F23862E1B15B2007B3C2D /* Tests */ = {
+		4CDBFA042E1BEC84006C8620 /* Sources */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
-				4C9F24AA2E1B36F1007B3C2D /* Exceptions for "Tests" folder in "MakerWorks" target */,
-				4C9F24A92E1B36D4007B3C2D /* Exceptions for "Tests" folder in "MakerWorksTests" target */,
+				4CDBFA4F2E1BEDF1006C8620 /* Exceptions for "Sources" folder in "MakerWorks" target */,
+				4CDBFA502E1BEDF1006C8620 /* Exceptions for "Sources" folder in "MakerWorksTests" target */,
 			);
-			path = Tests;
-			sourceTree = "<group>";
-		};
-		4C9F23872E1B15D5007B3C2D /* Views */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = Views;
-			sourceTree = "<group>";
-		};
-		4C9F23882E1B15D9007B3C2D /* Models */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = Models;
+			path = Sources;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -138,30 +91,9 @@
 		4C9F234D2E1B14B5007B3C2D = {
 			isa = PBXGroup;
 			children = (
+				4CDBFA042E1BEC84006C8620 /* Sources */,
 				4C9F23D42E1B1DB2007B3C2D /* README.md */,
-				4C9F23D22E1B1DA0007B3C2D /* Info.plist */,
-				4C9F23862E1B15B2007B3C2D /* Tests */,
-				4C9F23852E1B15A4007B3C2D /* Resources */,
-				4C9F23842E1B158F007B3C2D /* Utils */,
-				4C9F23832E1B1575007B3C2D /* Networking */,
-				4C9F23822E1B1564007B3C2D /* ViewModels */,
-				4C9F23582E1B14B5007B3C2D /* MakerWorks */,
-				4C9F23662E1B14B6007B3C2D /* MakerWorksTests */,
-				4C9F23702E1B14B6007B3C2D /* MakerWorksUITests */,
-				4C9F23572E1B14B5007B3C2D /* Products */,
-				4C9F23872E1B15D5007B3C2D /* Views */,
-				4C9F23882E1B15D9007B3C2D /* Models */,
 			);
-			sourceTree = "<group>";
-		};
-		4C9F23572E1B14B5007B3C2D /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				4C9F23562E1B14B5007B3C2D /* MakerWorks.app */,
-				4C9F23632E1B14B6007B3C2D /* MakerWorksTests.xctest */,
-				4C9F236D2E1B14B6007B3C2D /* MakerWorksUITests.xctest */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -180,14 +112,7 @@
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
-				4C9F23582E1B14B5007B3C2D /* MakerWorks */,
-				4C9F23822E1B1564007B3C2D /* ViewModels */,
-				4C9F23832E1B1575007B3C2D /* Networking */,
-				4C9F23842E1B158F007B3C2D /* Utils */,
-				4C9F23852E1B15A4007B3C2D /* Resources */,
-				4C9F23862E1B15B2007B3C2D /* Tests */,
-				4C9F23872E1B15D5007B3C2D /* Views */,
-				4C9F23882E1B15D9007B3C2D /* Models */,
+				4CDBFA042E1BEC84006C8620 /* Sources */,
 			);
 			name = MakerWorks;
 			packageProductDependencies = (
@@ -209,9 +134,6 @@
 			dependencies = (
 				4C9F23652E1B14B6007B3C2D /* PBXTargetDependency */,
 			);
-			fileSystemSynchronizedGroups = (
-				4C9F23662E1B14B6007B3C2D /* MakerWorksTests */,
-			);
 			name = MakerWorksTests;
 			packageProductDependencies = (
 			);
@@ -231,9 +153,6 @@
 			);
 			dependencies = (
 				4C9F236F2E1B14B6007B3C2D /* PBXTargetDependency */,
-			);
-			fileSystemSynchronizedGroups = (
-				4C9F23702E1B14B6007B3C2D /* MakerWorksUITests */,
 			);
 			name = MakerWorksUITests;
 			packageProductDependencies = (
@@ -278,7 +197,7 @@
 				4C9F24A72E1B36C2007B3C2D /* XCRemoteSwiftPackageReference "swift-async-algorithms" */,
 			);
 			preferredProjectObjectVersion = 77;
-			productRefGroup = 4C9F23572E1B14B5007B3C2D /* Products */;
+			productRefGroup = 4C9F234D2E1B14B5007B3C2D;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
@@ -294,7 +213,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4C9F23D32E1B1DA3007B3C2D /* Info.plist in Resources */,
 				4C9F23D52E1B1DB5007B3C2D /* README.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

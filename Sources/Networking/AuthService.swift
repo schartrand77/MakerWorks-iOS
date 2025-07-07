@@ -10,6 +10,7 @@ import Combine
 
 protocol AuthServiceProtocol {
     func fetchCurrentUser() -> AnyPublisher<User, Error>
+    func exchangeCodeForToken(code: String) -> AnyPublisher<User, Error>
     func logout()
 }
 
@@ -20,10 +21,17 @@ final class AuthService: AuthServiceProtocol {
         self.client = client
     }
 
+    /// Fetch the currently logged-in user
     func fetchCurrentUser() -> AnyPublisher<User, Error> {
         client.request(.currentUser)
     }
 
+    /// Exchange OIDC authorization code for tokens & fetch user
+    func exchangeCodeForToken(code: String) -> AnyPublisher<User, Error> {
+        client.request(.exchangeCode(code))
+    }
+
+    /// Logs out the user and clears token storage
     func logout() {
         TokenStorage.shared.clear()
     }
