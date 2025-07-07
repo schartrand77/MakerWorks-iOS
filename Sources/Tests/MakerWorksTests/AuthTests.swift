@@ -3,11 +3,11 @@ import XCTest
 
 final class AuthTests: XCTestCase {
     func testExchangeCodeEndpointRequest() throws {
-        let baseURL = URL(string: "https://example.com")!
+        let baseURL = URL(string: "https://api.makerworks.app")!
         let request = APIEndpoint.exchangeCode("abc123").urlRequest(baseURL: baseURL)
 
         XCTAssertEqual(request.httpMethod, "POST")
-        XCTAssertEqual(request.url?.absoluteString, "https://example.com/api/v1/auth/exchange/")
+        XCTAssertEqual(request.url?.absoluteString, "https://api.makerworks.app/api/v1/auth/exchange/")
         XCTAssertEqual(request.value(forHTTPHeaderField: "Content-Type"), "application/json")
 
         if let body = request.httpBody,
