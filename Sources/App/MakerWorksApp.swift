@@ -14,9 +14,7 @@ struct MakerWorksApp: App {
 
     var body: some Scene {
         WindowGroup {
-            if serverAddress == nil {
-                LandingView()
-            } else if !isLoggedIn {
+            if !isLoggedIn {
                 LoginView()
                     .onAppear {
                         if let addr = serverAddress, let url = URL(string: addr) {
