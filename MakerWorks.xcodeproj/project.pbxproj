@@ -28,9 +28,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		4C9F23562E1B14B5007B3C2D /* MakerWorks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = MakerWorks.app; path = "/Users/stephenchartrand/Documents/GitHub/MakerWorks/build/Debug-iphoneos/MakerWorks.app"; sourceTree = "<absolute>"; };
-		4C9F23632E1B14B6007B3C2D /* MakerWorksTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = MakerWorksTests.xctest; path = "/Users/stephenchartrand/Documents/GitHub/MakerWorks/build/Debug-iphoneos/MakerWorks.app/PlugIns/MakerWorksTests.xctest"; sourceTree = "<absolute>"; };
-		4C9F236D2E1B14B6007B3C2D /* MakerWorksUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = MakerWorksUITests.xctest; path = "/Users/stephenchartrand/Documents/GitHub/MakerWorks/build/Debug-iphoneos/MakerWorksUITests-Runner.app/PlugIns/MakerWorksUITests.xctest"; sourceTree = "<absolute>"; };
+		4C4E6FA72E2149830075951E /* EstimateViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EstimateViewModelTests.swift; sourceTree = "<group>"; };
+		4C9DF7752E1C05AF00ED145E /* MakerWorks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MakerWorks.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		4C9DF7762E1C05AF00ED145E /* MakerWorksTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MakerWorksTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		4C9DF7772E1C05AF00ED145E /* MakerWorksUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MakerWorksUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C9F23D42E1B1DB2007B3C2D /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -38,14 +39,19 @@
 		4CDBFA4F2E1BEDF1006C8620 /* Exceptions for "Sources" folder in "MakerWorks" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
+				Resources/Info/Info.plist,
+				Tests/MakerWorksTests/AuthTests.swift,
 				Tests/MakerWorksTests/EstimateViewModelTests.swift,
+				Tests/MakerWorksTests/TokenStorageTests.swift,
 			);
 			target = 4C9F23552E1B14B5007B3C2D /* MakerWorks */;
 		};
 		4CDBFA502E1BEDF1006C8620 /* Exceptions for "Sources" folder in "MakerWorksTests" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
+				Tests/MakerWorksTests/AuthTests.swift,
 				Tests/MakerWorksTests/EstimateViewModelTests.swift,
+				Tests/MakerWorksTests/TokenStorageTests.swift,
 			);
 			target = 4C9F23622E1B14B6007B3C2D /* MakerWorksTests */;
 		};
@@ -93,6 +99,10 @@
 			children = (
 				4CDBFA042E1BEC84006C8620 /* Sources */,
 				4C9F23D42E1B1DB2007B3C2D /* README.md */,
+				4C9DF7752E1C05AF00ED145E /* MakerWorks.app */,
+				4C9DF7762E1C05AF00ED145E /* MakerWorksTests.xctest */,
+				4C4E6FA72E2149830075951E /* EstimateViewModelTests.swift */,
+				4C9DF7772E1C05AF00ED145E /* MakerWorksUITests.xctest */,
 			);
 			sourceTree = "<group>";
 		};
@@ -118,7 +128,7 @@
 			packageProductDependencies = (
 			);
 			productName = MakerWorks;
-			productReference = 4C9F23562E1B14B5007B3C2D /* MakerWorks.app */;
+			productReference = 4C9DF7752E1C05AF00ED145E /* MakerWorks.app */;
 			productType = "com.apple.product-type.application";
 		};
 		4C9F23622E1B14B6007B3C2D /* MakerWorksTests */ = {
@@ -138,7 +148,7 @@
 			packageProductDependencies = (
 			);
 			productName = MakerWorksTests;
-			productReference = 4C9F23632E1B14B6007B3C2D /* MakerWorksTests.xctest */;
+			productReference = 4C9DF7762E1C05AF00ED145E /* MakerWorksTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		4C9F236C2E1B14B6007B3C2D /* MakerWorksUITests */ = {
@@ -158,7 +168,7 @@
 			packageProductDependencies = (
 			);
 			productName = MakerWorksUITests;
-			productReference = 4C9F236D2E1B14B6007B3C2D /* MakerWorksUITests.xctest */;
+			productReference = 4C9DF7772E1C05AF00ED145E /* MakerWorksUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -399,7 +409,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = NO;
-				INFOPLIST_FILE = Info.plist;
+				INFOPLIST_FILE = Sources/Resources/Info/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -422,7 +432,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = NO;
-				INFOPLIST_FILE = Info.plist;
+				INFOPLIST_FILE = Sources/Resources/Info/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

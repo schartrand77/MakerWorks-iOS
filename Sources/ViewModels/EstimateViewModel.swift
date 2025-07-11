@@ -79,7 +79,7 @@ final class EstimateViewModel: ObservableObject {
             "filament_type": filamentType,
             "filament_colors": filamentColors,
             "print_profile": printProfile,
-            "custom_text": customText.isEmpty ? nil : customText
+            "custom_text": (customText.isEmpty ? nil : customText) as Any
         ]
 
         do {

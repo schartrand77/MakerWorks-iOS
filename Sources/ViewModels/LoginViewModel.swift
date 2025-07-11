@@ -10,7 +10,7 @@ import Combine
 import AuthenticationServices
 import os
 
-final class LoginViewModel: ObservableObject {
+final class LoginViewModel: NSObject, ObservableObject {
     @Published var isLoading: Bool = false
     @Published var errorMessage: String?
 
@@ -90,7 +90,12 @@ final class LoginViewModel: ObservableObject {
                     self?.logger.error("Token exchange failed: \(error.localizedDescription)")
                 }
             }, receiveValue: { [weak self] user in
-                self?.logger.info("Login successful: \(user.id.uuidString)")
+                self?.isLoading = false
+                if let uuid = UUID(uuidString: user.id) {
+                    self?.logger.info("Login successful: \(uuid.uuidString)")
+                } else {
+                    self?.logger.info("Login successful: \(user.id)")
+                }
                 NotificationCenter.default.post(name: .didLogin, object: nil)
             })
             .store(in: &cancellables)
@@ -99,7 +104,14 @@ final class LoginViewModel: ObservableObject {
 
 extension LoginViewModel: ASWebAuthenticationPresentationContextProviding {
     func presentationAnchor(for session: ASWebAuthenticationSession) -> ASPresentationAnchor {
-        return UIApplication.shared.windows.first { $0.isKeyWindow } ?? ASPresentationAnchor()
+        if let scene = UIApplication.shared.connectedScenes
+            .compactMap({ $0 as? UIWindowScene })
+            .first(where: { $0.activationState == .foregroundActive }),
+           let window = scene.windows.first(where: { $0.isKeyWindow }) {
+            return window
+        } else {
+            return ASPresentationAnchor()
+        }
     }
 }
 

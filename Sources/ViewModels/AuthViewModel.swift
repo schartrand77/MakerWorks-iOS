@@ -47,7 +47,12 @@ final class AuthViewModel: ObservableObject {
                 guard let self = self else { return }
                 self.user = user
                 self.isAuthenticated = true
-                self.logger.info("User authenticated: \(user.id.uuidString)")
+
+                if let uuid = UUID(uuidString: user.id) {
+                    self.logger.info("User authenticated: \(uuid.uuidString)")
+                } else {
+                    self.logger.info("User authenticated: \(user.id)")
+                }
             })
             .store(in: &cancellables)
     }
