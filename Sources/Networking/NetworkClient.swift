@@ -25,7 +25,7 @@ final class DefaultNetworkClient: NetworkClient {
     ///
     /// This is exposed so that other modules can build URLs or requests
     /// without needing to duplicate the base URL string.
-    let baseURL: URL
+    private(set) var baseURL: URL
     private let session: URLSession
     private let authenticator: Authenticator
 
@@ -33,6 +33,11 @@ final class DefaultNetworkClient: NetworkClient {
         self.baseURL = baseURL
         self.session = session
         self.authenticator = authenticator
+    }
+
+    /// Updates the base URL for subsequent requests
+    func updateBaseURL(_ url: URL) {
+        self.baseURL = url
     }
 
     func request<T: Decodable>(_ endpoint: APIEndpoint) -> AnyPublisher<T, Error> {
