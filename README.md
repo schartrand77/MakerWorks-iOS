@@ -11,7 +11,8 @@ The app communicates with the MakerWorks backend at `https://api.makerworks.app`
 ## Build and Run
 1. Open `MakerWorks.xcodeproj` in Xcode.
 2. Select the `MakerWorks` target and your preferred simulator or device.
-3. Build and run the app with **Cmd+R** or by pressing the Run button.
+3. Build and run the app with **Cmd+R** or by pressing the Run button. The app
+   checks if you are already authenticated and shows the login screen if not.
 
 Alternatively, use `xcodebuild` on the command line:
 ```sh
