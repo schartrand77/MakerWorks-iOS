@@ -9,6 +9,8 @@ import SwiftUI
 
 struct LoginView: View {
     @StateObject private var viewModel = LoginViewModel()
+    @AppStorage("serverAddress") private var serverAddress: String?
+    @State private var address: String = ""
 
     var body: some View {
         ZStack {
@@ -19,6 +21,12 @@ struct LoginView: View {
                 Text("Welcome to MakerWorks")
                     .font(.largeTitle)
                     .foregroundColor(.white)
+
+                TextField("Server Address", text: $address)
+                    .textInputAutocapitalization(.never)
+                    .autocorrectionDisabled(true)
+                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                    .padding(.horizontal)
 
                 if let error = viewModel.errorMessage {
                     Text(error)
@@ -38,6 +46,10 @@ struct LoginView: View {
                     .padding(.horizontal)
 
                 Button(action: {
+                    if let url = URL(string: address) {
+                        DefaultNetworkClient.shared.updateBaseURL(url)
+                        serverAddress = address
+                    }
                     viewModel.login()
                 }) {
                     Text(viewModel.isLoading ? "Logging in…" : "Login")
@@ -52,6 +64,12 @@ struct LoginView: View {
                 Spacer()
             }
             .padding()
+        }
+        .onAppear {
+            address = serverAddress ?? "https://api.makerworks.app"
+            if let addr = serverAddress, let url = URL(string: addr) {
+                DefaultNetworkClient.shared.updateBaseURL(url)
+            }
         }
     }
 }
