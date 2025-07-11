@@ -27,10 +27,20 @@ struct LoginView: View {
                         .padding()
                 }
 
+                TextField("Username", text: $viewModel.username)
+                    .textInputAutocapitalization(.never)
+                    .autocorrectionDisabled(true)
+                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                    .padding(.horizontal)
+
+                SecureField("Password", text: $viewModel.password)
+                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                    .padding(.horizontal)
+
                 Button(action: {
                     viewModel.login()
                 }) {
-                    Text(viewModel.isLoading ? "Logging in…" : "Login with MakerWorks")
+                    Text(viewModel.isLoading ? "Logging in…" : "Login")
                         .frame(maxWidth: .infinity)
                         .padding()
                         .background(.ultraThinMaterial)
