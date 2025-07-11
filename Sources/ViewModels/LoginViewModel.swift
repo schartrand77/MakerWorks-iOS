@@ -7,10 +7,11 @@
 
 import Foundation
 import Combine
-import AuthenticationServices
 import os
 
-final class LoginViewModel: NSObject, ObservableObject {
+final class LoginViewModel: ObservableObject {
+    @Published var username: String = ""
+    @Published var password: String = ""
     @Published var isLoading: Bool = false
     @Published var errorMessage: String?
 
@@ -22,96 +23,31 @@ final class LoginViewModel: NSObject, ObservableObject {
         self.authService = authService
     }
 
-    /// Starts the login process via OIDC
+    /// Starts the login process with username & password
     func login() {
-        logger.info("Starting OIDC login…")
+        logger.info("Attempting login")
         self.isLoading = true
         self.errorMessage = nil
-
-        startOIDCLogin()
-    }
-
-    /// Initiates the OIDC login using ASWebAuthenticationSession
-    private func startOIDCLogin() {
-        guard let authURL = URL(string: "https://your-authentik-server/if/flow/your-flow/") else {
-            self.isLoading = false
-            self.errorMessage = "Invalid Auth URL"
-            return
-        }
-
-        let callbackScheme = "makerworks"  // e.g., makerworks://auth/callback
-        let session = ASWebAuthenticationSession(
-            url: authURL,
-            callbackURLScheme: callbackScheme
-        ) { [weak self] callbackURL, error in
-            DispatchQueue.main.async {
-                self?.isLoading = false
-                if let error = error {
-                    self?.logger.error("OIDC login failed: \(error.localizedDescription)")
-                    self?.errorMessage = error.localizedDescription
-                    return
-                }
-
-                guard let callbackURL = callbackURL else {
-                    self?.errorMessage = "No callback URL received"
-                    return
-                }
-
-                self?.handleCallbackURL(callbackURL)
-            }
-        }
-
-        session.presentationContextProvider = self
-        session.prefersEphemeralWebBrowserSession = true
-        session.start()
-    }
-
-    /// Handles the OIDC callback URL
-    private func handleCallbackURL(_ url: URL) {
-        logger.info("Handling OIDC callback URL: \(url.absoluteString)")
-
-        guard let components = URLComponents(url: url, resolvingAgainstBaseURL: false),
-              let queryItems = components.queryItems,
-              let code = queryItems.first(where: { $0.name == "code" })?.value
-        else {
-            self.errorMessage = "Invalid callback parameters"
-            return
-        }
-
-        logger.info("Authorization code received: \(code)")
-
-        // Exchange code for token
-        authService.exchangeCodeForToken(code: code)
+        authService.login(username: username, password: password)
             .receive(on: DispatchQueue.main)
             .sink(receiveCompletion: { [weak self] completion in
-                self?.isLoading = false
+                guard let self = self else { return }
+                self.isLoading = false
                 if case .failure(let error) = completion {
-                    self?.errorMessage = error.localizedDescription
-                    self?.logger.error("Token exchange failed: \(error.localizedDescription)")
+                    self.errorMessage = error.localizedDescription
+                    self.logger.error("Login failed: \(error.localizedDescription)")
                 }
             }, receiveValue: { [weak self] user in
-                self?.isLoading = false
+                guard let self = self else { return }
+                self.isLoading = false
                 if let uuid = UUID(uuidString: user.id) {
-                    self?.logger.info("Login successful: \(uuid.uuidString)")
+                    self.logger.info("Login successful: \(uuid.uuidString)")
                 } else {
-                    self?.logger.info("Login successful: \(user.id)")
+                    self.logger.info("Login successful: \(user.id)")
                 }
                 NotificationCenter.default.post(name: .didLogin, object: nil)
             })
             .store(in: &cancellables)
-    }
-}
-
-extension LoginViewModel: ASWebAuthenticationPresentationContextProviding {
-    func presentationAnchor(for session: ASWebAuthenticationSession) -> ASPresentationAnchor {
-        if let scene = UIApplication.shared.connectedScenes
-            .compactMap({ $0 as? UIWindowScene })
-            .first(where: { $0.activationState == .foregroundActive }),
-           let window = scene.windows.first(where: { $0.isKeyWindow }) {
-            return window
-        } else {
-            return ASPresentationAnchor()
-        }
     }
 }
 
