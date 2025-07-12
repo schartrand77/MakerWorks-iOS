@@ -28,7 +28,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		4C4E6FA72E2149830075951E /* EstimateViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EstimateViewModelTests.swift; sourceTree = "<group>"; };
 		4C9DF7752E1C05AF00ED145E /* MakerWorks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MakerWorks.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C9DF7762E1C05AF00ED145E /* MakerWorksTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MakerWorksTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C9DF7772E1C05AF00ED145E /* MakerWorksUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MakerWorksUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -101,7 +100,6 @@
 				4C9F23D42E1B1DB2007B3C2D /* README.md */,
 				4C9DF7752E1C05AF00ED145E /* MakerWorks.app */,
 				4C9DF7762E1C05AF00ED145E /* MakerWorksTests.xctest */,
-				4C4E6FA72E2149830075951E /* EstimateViewModelTests.swift */,
 				4C9DF7772E1C05AF00ED145E /* MakerWorksUITests.xctest */,
 			);
 			sourceTree = "<group>";
