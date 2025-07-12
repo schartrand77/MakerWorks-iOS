@@ -16,7 +16,7 @@ enum APIEndpoint {
     case adminUnlock(email: String)
     case uploadModel
     case listModels
-    case estimate
+    case estimate(parameters: EstimateParameters)
     case exchangeCode(String)
     case logout
     // … add more cases as you implement other endpoints
@@ -78,10 +78,13 @@ enum APIEndpoint {
             request = URLRequest(url: url)
             request.httpMethod = "GET"
 
-        case .estimate:
+        case let .estimate(parameters):
             url = baseURL.appendingPathComponent("/api/v1/estimate/estimates/")
             request = URLRequest(url: url)
             request.httpMethod = "POST"
+            request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+            let encoder = JSONEncoder()
+            request.httpBody = try? encoder.encode(parameters)
 
         case .exchangeCode(let code):
             url = baseURL.appendingPathComponent("/api/v1/auth/exchange/")
