@@ -83,36 +83,24 @@ final class EstimateViewModel: ObservableObject {
         errorMessage = nil
         estimateResult = nil
 
-        var request = APIEndpoint.estimate.urlRequest(baseURL: DefaultNetworkClient.shared.baseURL)
-        request.httpMethod = "POST"
-        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        let params = EstimateParameters(
+            model_id: modelID,
+            x_mm: x_mm,
+            y_mm: y_mm,
+            z_mm: z_mm,
+            filament_type: filamentType,
+            filament_colors: filamentColors,
+            print_profile: printProfile,
+            custom_text: customText.isEmpty ? nil : customText
+        )
 
-        let payload = buildPayload()
-
-        do {
-            request.httpBody = try JSONSerialization.data(withJSONObject: payload, options: [])
-        } catch {
-            isLoading = false
-            errorMessage = error.localizedDescription
-            return
-        }
-
-        URLSession.shared.dataTaskPublisher(for: request)
-            .tryMap { result -> Data in
-                guard let response = result.response as? HTTPURLResponse,
-                      (200...299).contains(response.statusCode) else {
-                    throw URLError(.badServerResponse)
-                }
-                return result.data
-            }
-            .decode(type: EstimateResponse.self, decoder: JSONDecoder())
-            .receive(on: DispatchQueue.main)
+        client.request(.estimate(parameters: params))
             .sink(receiveCompletion: { completion in
                 self.isLoading = false
                 if case .failure(let error) = completion {
                     self.errorMessage = error.localizedDescription
                 }
-            }, receiveValue: { response in
+            }, receiveValue: { (response: EstimateResponse) in
                 self.estimateResult = EstimateResult(
                     estimatedTimeMinutes: response.estimated_time_minutes,
                     estimatedCostUSD: response.estimated_cost_usd
