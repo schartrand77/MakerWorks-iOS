@@ -11,7 +11,7 @@ struct BrowseView: View {
     @StateObject private var viewModel = BrowseViewModel()
 
     var body: some View {
-        NavigationView {
+        NavigationStack {
             VStack {
                 if viewModel.isLoading {
                     ProgressView("Loading models…")

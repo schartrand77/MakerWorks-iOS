@@ -11,7 +11,7 @@ struct EstimateView: View {
     @StateObject private var viewModel = EstimateViewModel()
 
     var body: some View {
-        NavigationView {
+        NavigationStack {
             ScrollView {
                 VStack(spacing: 20) {
                     Text("Estimate Your Print")

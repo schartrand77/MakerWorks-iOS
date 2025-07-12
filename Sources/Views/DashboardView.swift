@@ -11,7 +11,7 @@ struct DashboardView: View {
     @StateObject private var viewModel = DashboardViewModel()
 
     var body: some View {
-        NavigationView {
+        NavigationStack {
             VStack(spacing: 20) {
                 Text("Welcome, \(viewModel.user?.username ?? "Maker")!")
                     .font(.title)
