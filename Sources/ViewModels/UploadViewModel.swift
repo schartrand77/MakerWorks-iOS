@@ -46,33 +46,27 @@ final class UploadViewModel: ObservableObject {
         self.isUploading = true
         self.errorMessage = nil
 
-        var request = APIEndpoint.uploadModel.urlRequest(baseURL: DefaultNetworkClient.shared.baseURL)
-        request.httpMethod = "POST"
-
         let boundary = UUID().uuidString
-        request.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
 
         do {
             let data = try createMultipartBody(fileURL: fileURL, boundary: boundary)
-            request.httpBody = data
+
+            client.request(.uploadModel(data: data, boundary: boundary))
+                .receive(on: DispatchQueue.main)
+                .sink(receiveCompletion: { completion in
+                    self.isUploading = false
+                    if case .failure(let error) = completion {
+                        self.errorMessage = error.localizedDescription
+                    }
+                }, receiveValue: { (_: Model) in
+                    // Optionally handle success, clear form
+                    self.clear()
+                })
+                .store(in: &cancellables)
         } catch {
             self.isUploading = false
             self.errorMessage = error.localizedDescription
-            return
         }
-
-        URLSession.shared.dataTaskPublisher(for: request)
-            .receive(on: DispatchQueue.main)
-            .sink(receiveCompletion: { completion in
-                self.isUploading = false
-                if case .failure(let error) = completion {
-                    self.errorMessage = error.localizedDescription
-                }
-            }, receiveValue: { response in
-                // Optionally handle success, clear form
-                self.clear()
-            })
-            .store(in: &cancellables)
     }
 
     /// Builds multipart form-data body

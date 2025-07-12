@@ -14,7 +14,7 @@ enum APIEndpoint {
     case currentUser
     case debugMe
     case adminUnlock(email: String)
-    case uploadModel
+    case uploadModel(data: Data, boundary: String)
     case listModels
     case estimate(parameters: EstimateParameters)
     case exchangeCode(String)
@@ -68,10 +68,12 @@ enum APIEndpoint {
             let body = ["email": email]
             request.httpBody = try? JSONSerialization.data(withJSONObject: body, options: [])
 
-        case .uploadModel:
+        case let .uploadModel(data, boundary):
             url = baseURL.appendingPathComponent("/api/v1/upload/")
             request = URLRequest(url: url)
             request.httpMethod = "POST"
+            request.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
+            request.httpBody = data
 
         case .listModels:
             url = baseURL.appendingPathComponent("/api/v1/models")
