@@ -71,6 +71,18 @@ final class EstimateViewModelTests: XCTestCase {
 
         XCTAssertEqual(viewModel.errorMessage, "Please select at least one filament color.")
     }
+
+    func testPayloadIncludesCustomText() {
+        viewModel.customText = "Hello"
+        let payload = viewModel.buildPayload()
+        XCTAssertEqual(payload["custom_text"] as? String, "Hello")
+    }
+
+    func testPayloadOmitsEmptyCustomText() {
+        viewModel.customText = ""
+        let payload = viewModel.buildPayload()
+        XCTAssertNil(payload["custom_text"])
+    }
 }
 
 // MARK: - Mock Network Client

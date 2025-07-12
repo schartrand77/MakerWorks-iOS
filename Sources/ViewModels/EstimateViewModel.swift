@@ -49,6 +49,22 @@ final class EstimateViewModel: ObservableObject {
         // for now uses hardcoded lists
     }
 
+    /// Builds the request payload for the estimate call
+    func buildPayload() -> [String: Any] {
+        var payload: [String: Any] = [:]
+        payload["model_id"] = modelID
+        payload["x_mm"] = x_mm
+        payload["y_mm"] = y_mm
+        payload["z_mm"] = z_mm
+        payload["filament_type"] = filamentType
+        payload["filament_colors"] = filamentColors
+        payload["print_profile"] = printProfile
+        if !customText.isEmpty {
+            payload["custom_text"] = customText
+        }
+        return payload
+    }
+
     func estimate() {
         guard x_mm > 0, y_mm > 0, z_mm > 0 else {
             errorMessage = "All dimensions must be greater than 0."
@@ -71,16 +87,7 @@ final class EstimateViewModel: ObservableObject {
         request.httpMethod = "POST"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
 
-        let payload: [String: Any] = [
-            "model_id": modelID,
-            "x_mm": x_mm,
-            "y_mm": y_mm,
-            "z_mm": z_mm,
-            "filament_type": filamentType,
-            "filament_colors": filamentColors,
-            "print_profile": printProfile,
-            "custom_text": (customText.isEmpty ? nil : customText) as Any
-        ]
+        let payload = buildPayload()
 
         do {
             request.httpBody = try JSONSerialization.data(withJSONObject: payload, options: [])
