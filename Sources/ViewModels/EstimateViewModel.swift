@@ -49,7 +49,7 @@ final class EstimateViewModel: ObservableObject {
         // for now uses hardcoded lists
     }
 
-    /// Builds the request payload for the estimate call
+    /// Builds the request payload for the estimate call (unused with EstimateParameters)
     func buildPayload() -> [String: Any] {
         var payload: [String: Any] = [:]
         payload["model_id"] = modelID
@@ -84,14 +84,14 @@ final class EstimateViewModel: ObservableObject {
         estimateResult = nil
 
         let params = EstimateParameters(
-            model_id: modelID,
-            x_mm: x_mm,
-            y_mm: y_mm,
-            z_mm: z_mm,
-            filament_type: filamentType,
-            filament_colors: filamentColors,
-            print_profile: printProfile,
-            custom_text: customText.isEmpty ? nil : customText
+            modelId: modelID,
+            xMM: x_mm,
+            yMM: y_mm,
+            zMM: z_mm,
+            filamentType: filamentType,
+            filamentColors: filamentColors,
+            printProfile: printProfile,
+            customText: customText.isEmpty ? nil : customText
         )
 
         client.request(.estimate(parameters: params))

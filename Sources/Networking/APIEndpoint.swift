@@ -31,7 +31,11 @@ enum APIEndpoint {
             request.httpMethod = "POST"
             request.setValue("application/json", forHTTPHeaderField: "Content-Type")
             let body = ["email": email, "password": password]
-            request.httpBody = try? JSONSerialization.data(withJSONObject: body, options: [])
+            do {
+                request.httpBody = try JSONSerialization.data(withJSONObject: body, options: [])
+            } catch {
+                fatalError("Failed to encode signup body: \(error)")
+            }
 
         case let .signin(email, password):
             url = baseURL.appendingPathComponent("/api/v1/auth/signin")
@@ -39,7 +43,11 @@ enum APIEndpoint {
             request.httpMethod = "POST"
             request.setValue("application/json", forHTTPHeaderField: "Content-Type")
             let body = ["email": email, "password": password]
-            request.httpBody = try? JSONSerialization.data(withJSONObject: body, options: [])
+            do {
+                request.httpBody = try JSONSerialization.data(withJSONObject: body, options: [])
+            } catch {
+                fatalError("Failed to encode signin body: \(error)")
+            }
 
         case .currentUser:
             url = baseURL.appendingPathComponent("/api/v1/auth/me")
@@ -57,10 +65,14 @@ enum APIEndpoint {
             request.httpMethod = "POST"
             request.setValue("application/json", forHTTPHeaderField: "Content-Type")
             let body = ["email": email]
-            request.httpBody = try? JSONSerialization.data(withJSONObject: body, options: [])
+            do {
+                request.httpBody = try JSONSerialization.data(withJSONObject: body, options: [])
+            } catch {
+                fatalError("Failed to encode adminUnlock body: \(error)")
+            }
 
         case let .uploadModel(data, boundary):
-            url = baseURL.appendingPathComponent("/api/v1/upload/")
+            url = baseURL.appendingPathComponent("/api/v1/upload")
             request = URLRequest(url: url)
             request.httpMethod = "POST"
             request.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
@@ -72,20 +84,28 @@ enum APIEndpoint {
             request.httpMethod = "GET"
 
         case let .estimate(parameters):
-            url = baseURL.appendingPathComponent("/api/v1/estimate/estimates/")
+            url = baseURL.appendingPathComponent("/api/v1/estimate/estimates")
             request = URLRequest(url: url)
             request.httpMethod = "POST"
             request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-            let encoder = JSONEncoder()
-            request.httpBody = try? encoder.encode(parameters)
+            do {
+                let encoder = JSONEncoder()
+                request.httpBody = try encoder.encode(parameters)
+            } catch {
+                fatalError("Failed to encode estimate parameters: \(error)")
+            }
 
         case .exchangeCode(let code):
-            url = baseURL.appendingPathComponent("/api/v1/auth/exchange/")
+            url = baseURL.appendingPathComponent("/api/v1/auth/exchange")
             request = URLRequest(url: url)
             request.httpMethod = "POST"
             request.setValue("application/json", forHTTPHeaderField: "Content-Type")
             let body = ["code": code]
-            request.httpBody = try? JSONSerialization.data(withJSONObject: body, options: [])
+            do {
+                request.httpBody = try JSONSerialization.data(withJSONObject: body, options: [])
+            } catch {
+                fatalError("Failed to encode exchangeCode body: \(error)")
+            }
 
         case .signout:
             url = baseURL.appendingPathComponent("/api/v1/auth/signout")

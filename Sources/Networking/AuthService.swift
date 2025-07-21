@@ -25,33 +25,30 @@ final class AuthService: AuthServiceProtocol {
         self.client = client
     }
 
-    /// Fetch the currently logged-in user
     func fetchCurrentUser() -> AnyPublisher<User, Error> {
-        client.request(.currentUser)
+        client.request(APIEndpoint.currentUser)
     }
 
-    /// Exchange OIDC authorization code for tokens & fetch user
     func exchangeCodeForToken(code: String) -> AnyPublisher<User, Error> {
-        client.request(.exchangeCode(code))
+        client.request(APIEndpoint.exchangeCode(code))
     }
 
     func signup(email: String, password: String) -> AnyPublisher<User, Error> {
-        client.request(.signup(email: email, password: password))
+        client.request(APIEndpoint.signup(email: email, password: password))
     }
 
     func signin(email: String, password: String) -> AnyPublisher<User, Error> {
-        client.request(.signin(email: email, password: password))
+        client.request(APIEndpoint.signin(email: email, password: password))
     }
 
     func debugMe() -> AnyPublisher<User, Error> {
-        client.request(.debugMe)
+        client.request(APIEndpoint.debugMe)
     }
 
     func adminUnlock(email: String) -> AnyPublisher<Void, Error> {
-        client.request(.adminUnlock(email: email))
+        client.requestVoid(APIEndpoint.adminUnlock(email: email))
     }
 
-    /// Signs out the user and clears token storage
     func signout() {
         TokenStorage.shared.clear()
     }

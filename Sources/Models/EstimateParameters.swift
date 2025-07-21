@@ -9,12 +9,34 @@ import Foundation
 
 /// Request body for the estimate endpoint
 struct EstimateParameters: Codable {
-    let model_id: Int
-    let x_mm: Double
-    let y_mm: Double
-    let z_mm: Double
-    let filament_type: String
-    let filament_colors: [String]
-    let print_profile: String
-    let custom_text: String?
+    let modelId: Int
+    let xMM: Double
+    let yMM: Double
+    let zMM: Double
+    let filamentType: String
+    let filamentColors: [String]
+    let printProfile: String
+    let customText: String?
+
+    enum CodingKeys: String, CodingKey {
+        case modelId = "model_id"
+        case xMM = "x_mm"
+        case yMM = "y_mm"
+        case zMM = "z_mm"
+        case filamentType = "filament_type"
+        case filamentColors = "filament_colors"
+        case printProfile = "print_profile"
+        case customText = "custom_text"
+    }
+}
+
+extension EstimateParameters {
+    /// Basic validation helper
+    var isValid: Bool {
+        return modelId > 0 &&
+               xMM > 0 && yMM > 0 && zMM > 0 &&
+               !filamentType.isEmpty &&
+               !filamentColors.isEmpty &&
+               !printProfile.isEmpty
+    }
 }

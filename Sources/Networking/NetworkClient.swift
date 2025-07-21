@@ -12,12 +12,15 @@ import Combine
 protocol NetworkClient {
     /// Makes a request to the given API endpoint and decodes the response
     func request<T: Decodable>(_ endpoint: APIEndpoint) -> AnyPublisher<T, Error>
+
+    /// Makes a request where no response body is expected (just status check)
+    func requestVoid(_ endpoint: APIEndpoint) -> AnyPublisher<Void, Error>
 }
 
 /// Default implementation of the NetworkClient
 final class DefaultNetworkClient: NetworkClient {
     static let shared = DefaultNetworkClient(
-        baseURL: URL(string: "https://api.makerworks.app")!,
+        baseURL: URL(string: "http://127.0.0.1:8000")!,
         authenticator: Authenticator.shared
     )
 
@@ -57,6 +60,26 @@ final class DefaultNetworkClient: NetworkClient {
                 return result.data
             }
             .decode(type: T.self, decoder: JSONDecoder())
+            .receive(on: DispatchQueue.main)
+            .eraseToAnyPublisher()
+    }
+
+    func requestVoid(_ endpoint: APIEndpoint) -> AnyPublisher<Void, Error> {
+        var request = endpoint.urlRequest(baseURL: baseURL)
+        authenticator.attachHeaders(to: &request)
+
+        return session.dataTaskPublisher(for: request)
+            .tryMap { result in
+                guard let response = result.response as? HTTPURLResponse else {
+                    throw URLError(.badServerResponse)
+                }
+
+                if !(200...299).contains(response.statusCode) {
+                    throw NetworkError.httpError(statusCode: response.statusCode)
+                }
+
+                return () // Void
+            }
             .receive(on: DispatchQueue.main)
             .eraseToAnyPublisher()
     }

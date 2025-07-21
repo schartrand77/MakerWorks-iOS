@@ -39,24 +39,36 @@
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Resources/Info/Info.plist,
+				Tests/MakerWorksTests/AuthenticatorHeaderTests.swift,
 				Tests/MakerWorksTests/AuthTests.swift,
 				Tests/MakerWorksTests/EstimateViewModelTests.swift,
-                                Tests/MakerWorksTests/TokenStorageTests.swift,
-                                Tests/MakerWorksTests/UploadEndpointTests.swift,
-                                Tests/MakerWorksTests/AuthenticatorHeaderTests.swift,
-                                Tests/MakerWorksTests/UploadEndpointTests.swift,
-                                Tests/MakerWorksTests/AuthenticatorHeaderTests.swift,
+				Tests/MakerWorksTests/FavoritesManagerTests.swift,
+				Tests/MakerWorksTests/NetworkClientTests.swift,
+				Tests/MakerWorksTests/TokenStorageTests.swift,
+				Tests/MakerWorksTests/UploadEndpointTests.swift,
+				Tests/MakerWorksUITests/LoginUITests.swift,
 			);
 			target = 4C9F23552E1B14B5007B3C2D /* MakerWorks */;
 		};
 		4CDBFA502E1BEDF1006C8620 /* Exceptions for "Sources" folder in "MakerWorksTests" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
+				Tests/MakerWorksTests/AuthenticatorHeaderTests.swift,
 				Tests/MakerWorksTests/AuthTests.swift,
 				Tests/MakerWorksTests/EstimateViewModelTests.swift,
+				Tests/MakerWorksTests/FavoritesManagerTests.swift,
+				Tests/MakerWorksTests/NetworkClientTests.swift,
 				Tests/MakerWorksTests/TokenStorageTests.swift,
+				Tests/MakerWorksTests/UploadEndpointTests.swift,
 			);
 			target = 4C9F23622E1B14B6007B3C2D /* MakerWorksTests */;
+		};
+		4CE544E02E2E67830046196A /* Exceptions for "Sources" folder in "MakerWorksUITests" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Tests/MakerWorksUITests/LoginUITests.swift,
+			);
+			target = 4C9F236C2E1B14B6007B3C2D /* MakerWorksUITests */;
 		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
@@ -66,6 +78,7 @@
 			exceptions = (
 				4CDBFA4F2E1BEDF1006C8620 /* Exceptions for "Sources" folder in "MakerWorks" target */,
 				4CDBFA502E1BEDF1006C8620 /* Exceptions for "Sources" folder in "MakerWorksTests" target */,
+				4CE544E02E2E67830046196A /* Exceptions for "Sources" folder in "MakerWorksUITests" target */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
