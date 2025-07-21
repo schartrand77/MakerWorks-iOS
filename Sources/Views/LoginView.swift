@@ -66,7 +66,7 @@ struct LoginView: View {
             .padding()
         }
         .onAppear {
-            address = serverAddress ?? "https://api.makerworks.app"
+            address = serverAddress ?? "http://localhost:8000"
             if let addr = serverAddress, let url = URL(string: addr) {
                 DefaultNetworkClient.shared.updateBaseURL(url)
             }
