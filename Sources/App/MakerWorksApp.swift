@@ -10,10 +10,15 @@ import SwiftUI
 @main
 struct MakerWorksApp: App {
     @State private var isLoggedIn: Bool = false
+    @State private var showSplash: Bool = true
 
     var body: some Scene {
         WindowGroup {
-            if !isLoggedIn {
+            if showSplash {
+                SplashView {
+                    showSplash = false
+                }
+            } else if !isLoggedIn {
                 LoginView()
                     .onReceive(NotificationCenter.default.publisher(for: .didLogin)) { _ in
                         isLoggedIn = true
