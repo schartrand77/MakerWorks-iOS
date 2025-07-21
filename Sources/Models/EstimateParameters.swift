@@ -2,7 +2,7 @@
 //  EstimateParameters.swift
 //  MakerWorks
 //
-//  Created by OpenAI Codex on 2025-07-06.
+//  Created on 2025-07-06.
 //
 
 import Foundation
