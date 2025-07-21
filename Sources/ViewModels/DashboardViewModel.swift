@@ -43,4 +43,5 @@ final class DashboardViewModel: ObservableObject {
 
 extension Notification.Name {
     static let didLogout = Notification.Name("didLogout")
+    static let showFavorites = Notification.Name("showFavorites")
 }

@@ -32,7 +32,8 @@ struct DashboardView: View {
                         }
 
                         Button("View Favorites") {
-                            // Navigate to Favorites
+                            // Switch to Favorites tab
+                            NotificationCenter.default.post(name: .showFavorites, object: nil)
                         }
 
                         Button("Log Out") {
