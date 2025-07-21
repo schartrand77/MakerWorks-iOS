@@ -57,10 +57,10 @@ final class AuthViewModel: ObservableObject {
             .store(in: &cancellables)
     }
 
-    /// Logs out the current user.
-    func logout() {
-        logger.info("Logging out user.")
-        authService.logout()
+    /// Signs out the current user.
+    func signout() {
+        logger.info("Signing out user.")
+        authService.signout()
         isAuthenticated = false
         user = nil
         errorMessage = nil

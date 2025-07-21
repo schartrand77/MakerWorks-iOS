@@ -10,7 +10,6 @@ import Foundation
 enum APIEndpoint {
     case signup(email: String, password: String)
     case signin(email: String, password: String)
-    case login(username: String, password: String)
     case currentUser
     case debugMe
     case adminUnlock(email: String)
@@ -18,7 +17,7 @@ enum APIEndpoint {
     case listModels
     case estimate(parameters: EstimateParameters)
     case exchangeCode(String)
-    case logout
+    case signout
     // … add more cases as you implement other endpoints
 
     func urlRequest(baseURL: URL) -> URLRequest {
@@ -42,14 +41,6 @@ enum APIEndpoint {
             let body = ["email": email, "password": password]
             request.httpBody = try? JSONSerialization.data(withJSONObject: body, options: [])
 
-        case let .login(username, password):
-            url = baseURL.appendingPathComponent("/api/v1/auth/login")
-            request = URLRequest(url: url)
-            request.httpMethod = "POST"
-            request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-            let body = ["username": username, "password": password]
-            request.httpBody = try? JSONSerialization.data(withJSONObject: body, options: [])
-
         case .currentUser:
             url = baseURL.appendingPathComponent("/api/v1/auth/me")
             request = URLRequest(url: url)
@@ -61,7 +52,7 @@ enum APIEndpoint {
             request.httpMethod = "GET"
 
         case let .adminUnlock(email):
-            url = baseURL.appendingPathComponent("/api/v1/auth/admin/unlock")
+            url = baseURL.appendingPathComponent("/api/v1/admin/admin/unlock")
             request = URLRequest(url: url)
             request.httpMethod = "POST"
             request.setValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -96,8 +87,8 @@ enum APIEndpoint {
             let body = ["code": code]
             request.httpBody = try? JSONSerialization.data(withJSONObject: body, options: [])
 
-        case .logout:
-            url = baseURL.appendingPathComponent("/api/v1/auth/logout")
+        case .signout:
+            url = baseURL.appendingPathComponent("/api/v1/auth/signout")
             request = URLRequest(url: url)
             request.httpMethod = "POST"
         }

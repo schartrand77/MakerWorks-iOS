@@ -11,12 +11,11 @@ import Combine
 protocol AuthServiceProtocol {
     func fetchCurrentUser() -> AnyPublisher<User, Error>
     func exchangeCodeForToken(code: String) -> AnyPublisher<User, Error>
-    func login(username: String, password: String) -> AnyPublisher<User, Error>
     func signup(email: String, password: String) -> AnyPublisher<User, Error>
     func signin(email: String, password: String) -> AnyPublisher<User, Error>
     func debugMe() -> AnyPublisher<User, Error>
     func adminUnlock(email: String) -> AnyPublisher<Void, Error>
-    func logout()
+    func signout()
 }
 
 final class AuthService: AuthServiceProtocol {
@@ -36,10 +35,6 @@ final class AuthService: AuthServiceProtocol {
         client.request(.exchangeCode(code))
     }
 
-    func login(username: String, password: String) -> AnyPublisher<User, Error> {
-        client.request(.login(username: username, password: password))
-    }
-
     func signup(email: String, password: String) -> AnyPublisher<User, Error> {
         client.request(.signup(email: email, password: password))
     }
@@ -56,8 +51,8 @@ final class AuthService: AuthServiceProtocol {
         client.request(.adminUnlock(email: email))
     }
 
-    /// Logs out the user and clears token storage
-    func logout() {
+    /// Signs out the user and clears token storage
+    func signout() {
         TokenStorage.shared.clear()
     }
 }
