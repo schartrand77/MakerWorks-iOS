@@ -1,24 +1,21 @@
-//
-//  BrowseView.swift
-//  MakerWorks
-//
-//  Created by Stephen Chartrand on 2025-07-06.
-//
-
 import SwiftUI
 
-struct BrowseView: View {
-    @StateObject private var viewModel = BrowseViewModel()
+struct FavoritesView: View {
+    @StateObject private var viewModel = FavoritesViewModel()
 
     var body: some View {
         NavigationStack {
             VStack {
                 if viewModel.isLoading {
-                    ProgressView("Loading models…")
+                    ProgressView("Loading favorites…")
                         .progressViewStyle(CircularProgressViewStyle())
                 } else if let error = viewModel.errorMessage {
                     Text("Error: \(error)")
                         .foregroundColor(.red)
+                        .padding()
+                } else if viewModel.models.isEmpty {
+                    Text("No favorites yet")
+                        .foregroundColor(.secondary)
                         .padding()
                 } else {
                     List(viewModel.models) { model in
@@ -29,23 +26,10 @@ struct BrowseView: View {
                                 Spacer()
                                 FavoriteButton(modelID: model.id)
                             }
-
                             if let description = model.description {
                                 Text(description)
                                     .font(.subheadline)
                                     .foregroundColor(.secondary)
-                            }
-
-                            HStack {
-                                Text("Uploader: \(model.uploader)")
-                                    .font(.caption)
-                                    .foregroundColor(.gray)
-
-                                Spacer()
-
-                                Text(viewModel.formatDate(model.uploadedAt))
-                                    .font(.caption)
-                                    .foregroundColor(.gray)
                             }
                         }
                         .liquidGlass()
@@ -55,14 +39,14 @@ struct BrowseView: View {
                     .listStyle(PlainListStyle())
                 }
             }
-            .navigationTitle("Browse Models")
+            .navigationTitle("Favorites")
             .onAppear {
-                viewModel.fetchModels()
+                viewModel.fetchFavoriteModels()
             }
         }
     }
 }
 
 #Preview {
-    BrowseView()
+    FavoritesView()
 }

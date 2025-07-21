@@ -1,6 +1,6 @@
 # MakerWorks iOS
 
-MakerWorks-iOS is a SwiftUI application for interacting with the MakerWorks service. The project contains network clients, view models, and views for authentication, browsing models, requesting estimates, and uploading prints.
+MakerWorks-iOS is a SwiftUI application for interacting with the MakerWorks service. The project contains network clients, view models, and views for authentication, browsing models, requesting estimates, uploading prints, and managing local favorites.
 
 The app communicates with the MakerWorks backend at `https://api.makerworks.app` by default. The login screen includes a field for the server address and the value entered will be used for all API requests. You can still update the base URL programmatically via `DefaultNetworkClient` if needed.
 
@@ -25,6 +25,9 @@ To run the tests from the command line:
 ```sh
 xcodebuild -scheme MakerWorks -destination 'platform=iOS Simulator,name=iPhone 15' test
 ```
+
+## Favorites
+Models can be marked as favorites locally. Use the star button on a model card to toggle the favorite state. The **Favorites** tab lists all favorited models.
 
 ## Beta Testing
 To distribute beta builds via TestFlight:
