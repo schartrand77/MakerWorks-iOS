@@ -1,14 +1,13 @@
 # 👑 MakerWorks iOS
 
-[![Build](https://img.shields.io/badge/build-passing-brightgreen?style=flat-square)]()  
-[![Platform](https://img.shields.io/badge/platform-iOS-blue?style=flat-square)]()  
-[![License](https://img.shields.io/badge/license-MIT-lightgrey?style=flat-square)]()  
-[![App Store](https://img.shields.io/badge/app%20store-coming%20soon-orange?style=flat-square)]()  
+[![Build](https://img.shields.io/badge/build-passing-brightgreen?style=flat-square)]()
+[![Platform](https://img.shields.io/badge/platform-iOS-blue?style=flat-square)]()
+[![License](https://img.shields.io/badge/license-MIT-lightgrey?style=flat-square)]()
+[![App Store](https://img.shields.io/badge/app%20store-coming%20soon-orange?style=flat-square)]()
 
 > 🛠️ *The iOS app for makers who want more than another sad STL viewer.*
 
-MakerWorks iOS is a **next-gen app for browsing, hosting, and managing 3D models — with payments, uploads, and a sleek, glassy UI that’s actually pleasant to use.**  
-It’s fast. It’s modern. And it makes your models look great.
+MakerWorks iOS is a **next-gen app for browsing, hosting, and managing 3D models — with payments, uploads, and a sleek, glassy UI that's actually pleasant to use.** It's fast, modern, and it makes your models look great.
 
 ---
 
@@ -19,7 +18,7 @@ It’s fast. It’s modern. And it makes your models look great.
 - 🖼️ Auto-generated thumbnails & metadata extraction.
 - 💳 Integrated payments — no awkward side-payments or emailing strangers.
 - 📋 Manage your account & uploads with a VisionOS-inspired dashboard.
-- 🌓 Dark & light modes included, because duh.
+- 🌓 Dark & light modes included.
 - 🪞 Liquid Glass UI: clean, modern, and ridiculously polished.
 
 ---
@@ -55,3 +54,22 @@ It’s fast. It’s modern. And it makes your models look great.
 git clone https://github.com/schartrand77/MakerWorks-iOS.git
 cd MakerWorks-iOS
 open MakerWorks.xcodeproj
+```
+
+### Running
+1. Select the `MakerWorks` scheme in Xcode.
+2. Choose an iOS simulator or connect a device.
+3. Press **Run** to build and launch the app.
+
+### Tests
+The repository includes unit and UI tests. Run them from Xcode with **Product → Test**.
+
+---
+
+## 🤝 Contributing
+Pull requests are welcome! For major changes, please open an issue first to discuss what you would like to change. Make sure to update tests as appropriate.
+
+---
+
+## 📄 License
+This project is licensed under the [MIT License](LICENSE).
