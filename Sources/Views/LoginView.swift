@@ -35,7 +35,7 @@ struct LoginView: View {
                         .padding()
                 }
 
-                TextField("Username", text: $viewModel.username)
+                TextField("Email", text: $viewModel.email)
                     .textInputAutocapitalization(.never)
                     .autocorrectionDisabled(true)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
@@ -50,9 +50,9 @@ struct LoginView: View {
                         DefaultNetworkClient.shared.updateBaseURL(url)
                         serverAddress = address
                     }
-                    viewModel.login()
+                    viewModel.signin()
                 }) {
-                    Text(viewModel.isLoading ? "Logging in…" : "Login")
+                    Text(viewModel.isLoading ? "Signing in…" : "Sign In")
                         .frame(maxWidth: .infinity)
                         .padding()
                         .background(.ultraThinMaterial)
