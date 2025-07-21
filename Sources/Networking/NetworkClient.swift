@@ -83,6 +83,40 @@ final class DefaultNetworkClient: NetworkClient {
             .receive(on: DispatchQueue.main)
             .eraseToAnyPublisher()
     }
+
+    // MARK: - Modern Concurrency
+
+    /// Performs a network request using Swift's `async/await` syntax and decodes the response.
+    /// - Parameter endpoint: The API endpoint to hit.
+    /// - Returns: The decoded response value.
+    func request<T: Decodable>(_ endpoint: APIEndpoint) async throws -> T {
+        var request = endpoint.urlRequest(baseURL: baseURL)
+        authenticator.attachHeaders(to: &request)
+
+        let (data, response) = try await session.data(for: request)
+        guard let http = response as? HTTPURLResponse else {
+            throw URLError(.badServerResponse)
+        }
+        guard (200...299).contains(http.statusCode) else {
+            throw NetworkError.httpError(statusCode: http.statusCode)
+        }
+        return try JSONDecoder().decode(T.self, from: data)
+    }
+
+    /// Performs a network request where no response body is expected using `async/await`.
+    /// - Parameter endpoint: The API endpoint to hit.
+    func requestVoid(_ endpoint: APIEndpoint) async throws {
+        var request = endpoint.urlRequest(baseURL: baseURL)
+        authenticator.attachHeaders(to: &request)
+
+        let (_, response) = try await session.data(for: request)
+        guard let http = response as? HTTPURLResponse else {
+            throw URLError(.badServerResponse)
+        }
+        guard (200...299).contains(http.statusCode) else {
+            throw NetworkError.httpError(statusCode: http.statusCode)
+        }
+    }
 }
 
 /// Errors specific to networking

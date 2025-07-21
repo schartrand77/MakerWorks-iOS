@@ -4,6 +4,10 @@ MakerWorks-iOS is a SwiftUI application for interacting with the MakerWorks serv
 
 The app communicates with the MakerWorks backend at `https://api.makerworks.app` by default. You can update the base URL programmatically via `DefaultNetworkClient` if needed.
 
+## Async Networking
+`DefaultNetworkClient` now includes `async/await` APIs for performing requests. These helpers let you integrate with Swift's modern concurrency features without relying on Combine publishers.
+
+
 ## Prerequisites
 - macOS with [Xcode](https://developer.apple.com/xcode/) **16.3** or later
 - A valid Apple development account to run on devices
