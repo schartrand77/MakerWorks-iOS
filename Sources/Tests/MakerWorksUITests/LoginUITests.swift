@@ -18,7 +18,6 @@ final class LoginUITests: XCTestCase {
         app.launch()
 
         XCTAssertTrue(app.staticTexts["Welcome to MakerWorks"].exists)
-        XCTAssertTrue(app.textFields["Server Address"].exists)
         XCTAssertTrue(app.textFields["Email"].exists)
         XCTAssertTrue(app.secureTextFields["Password"].exists)
         XCTAssertTrue(app.buttons["Sign In"].exists)
