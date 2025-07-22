@@ -31,15 +31,39 @@ final class AuthService: AuthServiceProtocol {
     }
 
     func exchangeCodeForToken(code: String) -> AnyPublisher<User, Error> {
-        client.request(APIEndpoint.exchangeCode(code))
+        (client.request(APIEndpoint.exchangeCode(code)) as AnyPublisher<AuthResponse, Error>)
+            .handleEvents(receiveOutput: { response in
+                TokenStorage.shared.saveAll(token: response.accessToken,
+                                            email: response.email,
+                                            username: response.username,
+                                            groups: response.groups)
+            })
+            .map { $0.user }
+            .eraseToAnyPublisher()
     }
 
     func signup(email: String, password: String) -> AnyPublisher<User, Error> {
-        client.request(APIEndpoint.signup(email: email, password: password))
+        (client.request(APIEndpoint.signup(email: email, password: password)) as AnyPublisher<AuthResponse, Error>)
+            .handleEvents(receiveOutput: { response in
+                TokenStorage.shared.saveAll(token: response.accessToken,
+                                            email: response.email,
+                                            username: response.username,
+                                            groups: response.groups)
+            })
+            .map { $0.user }
+            .eraseToAnyPublisher()
     }
 
     func signin(email: String, password: String) -> AnyPublisher<User, Error> {
-        client.request(APIEndpoint.signin(email: email, password: password))
+        (client.request(APIEndpoint.signin(email: email, password: password)) as AnyPublisher<AuthResponse, Error>)
+            .handleEvents(receiveOutput: { response in
+                TokenStorage.shared.saveAll(token: response.accessToken,
+                                            email: response.email,
+                                            username: response.username,
+                                            groups: response.groups)
+            })
+            .map { $0.user }
+            .eraseToAnyPublisher()
     }
 
     func debugMe() -> AnyPublisher<User, Error> {
