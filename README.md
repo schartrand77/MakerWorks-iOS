@@ -63,6 +63,30 @@ open MakerWorks.xcodeproj
 
 ### Tests
 The repository includes unit and UI tests. Run them from Xcode with **Product → Test**.
+After installing the Swift toolchain (see below), you can also execute the tests
+from the command line with:
+
+```bash
+swift test
+```
+
+### CLI Setup (Swift Package Manager)
+
+To run the tests outside of Xcode you need a Swift toolchain with the Swift
+Package Manager. A helper script is provided for Ubuntu 20.04+:
+
+```bash
+sudo ./scripts/install_swift.sh
+```
+
+Once installation completes, open a new terminal (to update your `PATH`) and
+verify Swift is available:
+
+```bash
+swift --version
+```
+
+You can then execute the tests using `swift test` as shown above.
 
 ---
 
