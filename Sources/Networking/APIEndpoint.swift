@@ -13,6 +13,8 @@ enum APIEndpoint {
     case currentUser
     case debugMe
     case adminUnlock(email: String)
+    case adminLock(email: String)
+    case adminUsers
     case uploadModel(data: Data, boundary: String)
     case listModels
     case estimate(parameters: EstimateParameters)
@@ -71,6 +73,23 @@ enum APIEndpoint {
             } catch {
                 fatalError("Failed to encode adminUnlock body: \(error)")
             }
+
+        case let .adminLock(email):
+            url = baseURL.appendingPathComponent("/api/v1/admin/lock/")
+            request = URLRequest(url: url)
+            request.httpMethod = "POST"
+            request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+            let body = ["email": email]
+            do {
+                request.httpBody = try JSONSerialization.data(withJSONObject: body, options: [])
+            } catch {
+                fatalError("Failed to encode adminLock body: \(error)")
+            }
+
+        case .adminUsers:
+            url = baseURL.appendingPathComponent("/api/v1/admin/users/")
+            request = URLRequest(url: url)
+            request.httpMethod = "GET"
 
         case let .uploadModel(data, boundary):
             url = baseURL.appendingPathComponent("/api/v1/upload/")
