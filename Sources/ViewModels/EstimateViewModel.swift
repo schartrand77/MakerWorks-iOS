@@ -29,12 +29,12 @@ final class EstimateViewModel: ObservableObject {
     @Published var isLoading: Bool = false
     @Published var errorMessage: String?
 
-    let availableFilamentTypes = ["PLA", "PLA MATTE", "PETG"]
-    let availableColors = [
+    @Published var availableFilamentTypes: [String] = ["PLA", "PLA MATTE", "PETG"]
+    @Published var availableColors: [String] = [
         "#FF0000", "#00FF00", "#0000FF", "#FFFF00",
         "#FF00FF", "#00FFFF", "#000000", "#FFFFFF"
     ]
-    let availablePrintProfiles = ["standard", "quality", "elite"]
+    @Published var availablePrintProfiles: [String] = ["standard", "quality", "elite"]
 
     private var cancellables = Set<AnyCancellable>()
     private let client: NetworkClient
@@ -45,8 +45,20 @@ final class EstimateViewModel: ObservableObject {
     }
 
     func loadFilamentData() {
-        // optionally fetch availableFilamentTypes & colors from backend
-        // for now uses hardcoded lists
+        client.request(.filamentPicker)
+            .sink(receiveCompletion: { completion in
+                if case .failure(let error) = completion {
+                    self.errorMessage = error.localizedDescription
+                }
+            }, receiveValue: { (data: FilamentPickerData) in
+                self.availableFilamentTypes = data.filamentTypes
+                self.availableColors = data.colors
+                self.availablePrintProfiles = data.printProfiles
+                if self.filamentType.isEmpty {
+                    self.filamentType = data.filamentTypes.first ?? ""
+                }
+            })
+            .store(in: &cancellables)
     }
 
     /// Builds the request payload for the estimate call (unused with EstimateParameters)

@@ -18,6 +18,7 @@ enum APIEndpoint {
     case estimate(parameters: EstimateParameters)
     case exchangeCode(String)
     case signout
+    case filamentPicker
     // … add more cases as you implement other endpoints
 
     func urlRequest(baseURL: URL) -> URLRequest {
@@ -111,6 +112,11 @@ enum APIEndpoint {
             url = baseURL.appendingPathComponent("/api/v1/auth/signout")
             request = URLRequest(url: url)
             request.httpMethod = "POST"
+
+        case .filamentPicker:
+            url = baseURL.appendingPathComponent("/api/v1/filaments/picker")
+            request = URLRequest(url: url)
+            request.httpMethod = "GET"
         }
 
         return request
