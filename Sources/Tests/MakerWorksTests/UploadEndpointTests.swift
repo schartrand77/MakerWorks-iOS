@@ -13,4 +13,12 @@ final class UploadEndpointTests: XCTestCase {
         XCTAssertEqual(request.value(forHTTPHeaderField: "Content-Type"), "multipart/form-data; boundary=\(boundary)")
         XCTAssertEqual(request.httpBody, data)
     }
+
+    func testFilamentPickerRequest() throws {
+        let baseURL = URL(string: "https://api.makerworks.app")!
+        let request = APIEndpoint.filamentPicker.urlRequest(baseURL: baseURL)
+
+        XCTAssertEqual(request.httpMethod, "GET")
+        XCTAssertEqual(request.url?.absoluteString, "https://api.makerworks.app/api/v1/filaments/picker/")
+    }
 }
