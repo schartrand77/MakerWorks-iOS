@@ -15,6 +15,8 @@ protocol AuthServiceProtocol {
     func signin(email: String, password: String) -> AnyPublisher<User, Error>
     func debugMe() -> AnyPublisher<User, Error>
     func adminUnlock(email: String) -> AnyPublisher<Void, Error>
+    func adminLock(email: String) -> AnyPublisher<Void, Error>
+    func adminUsers() -> AnyPublisher<[User], Error>
     func signout()
 }
 
@@ -72,6 +74,14 @@ final class AuthService: AuthServiceProtocol {
 
     func adminUnlock(email: String) -> AnyPublisher<Void, Error> {
         client.requestVoid(APIEndpoint.adminUnlock(email: email))
+    }
+
+    func adminLock(email: String) -> AnyPublisher<Void, Error> {
+        client.requestVoid(APIEndpoint.adminLock(email: email))
+    }
+
+    func adminUsers() -> AnyPublisher<[User], Error> {
+        client.request(APIEndpoint.adminUsers)
     }
 
     func signout() {
