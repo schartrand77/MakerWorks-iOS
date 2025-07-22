@@ -1,15 +1,8 @@
-//
-//  LoginView.swift
-//  MakerWorks
-//
-//  Created by Stephen Chartrand on 2025-07-06.
-//
-
 import SwiftUI
 
-struct LoginView: View {
-    @StateObject private var viewModel = LoginViewModel()
-    @State private var showSignup = false
+struct SignUpView: View {
+    @Environment(\.dismiss) private var dismiss
+    @StateObject private var viewModel = SignupViewModel()
 
     var body: some View {
         ZStack {
@@ -17,7 +10,7 @@ struct LoginView: View {
 
             VStack(spacing: 24) {
                 Spacer()
-                Text("Welcome to MakerWorks")
+                Text("Create an Account")
                     .font(.largeTitle)
                     .foregroundColor(.white)
 
@@ -39,9 +32,9 @@ struct LoginView: View {
                     .padding(.horizontal)
 
                 Button(action: {
-                    viewModel.signin()
+                    viewModel.signup()
                 }) {
-                    Text(viewModel.isLoading ? "Signing in…" : "Sign In")
+                    Text(viewModel.isLoading ? "Signing up…" : "Sign Up")
                         .frame(maxWidth: .infinity)
                         .padding()
                         .background(.ultraThinMaterial)
@@ -50,17 +43,18 @@ struct LoginView: View {
                 .disabled(viewModel.isLoading)
                 .padding(.horizontal)
 
-                Button("Don't have an account? Sign Up") {
-                    showSignup = true
-                }
-                .padding(.horizontal)
-                .sheet(isPresented: $showSignup) {
-                    SignUpView()
-                }
-
                 Spacer()
             }
             .padding()
         }
+        .toolbar {
+            ToolbarItem(placement: .cancellationAction) {
+                Button("Cancel") { dismiss() }
+            }
+        }
     }
+}
+
+#Preview {
+    SignUpView()
 }
