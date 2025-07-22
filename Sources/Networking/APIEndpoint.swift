@@ -27,7 +27,7 @@ enum APIEndpoint {
 
         switch self {
         case let .signup(email, password):
-            url = baseURL.appendingPathComponent("/api/v1/auth/signup")
+            url = baseURL.appendingPathComponent("/api/v1/auth/signup/")
             request = URLRequest(url: url)
             request.httpMethod = "POST"
             request.setValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -39,7 +39,7 @@ enum APIEndpoint {
             }
 
         case let .signin(email, password):
-            url = baseURL.appendingPathComponent("/api/v1/auth/signin")
+            url = baseURL.appendingPathComponent("/api/v1/auth/signin/")
             request = URLRequest(url: url)
             request.httpMethod = "POST"
             request.setValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -51,17 +51,17 @@ enum APIEndpoint {
             }
 
         case .currentUser:
-            url = baseURL.appendingPathComponent("/api/v1/auth/me")
+            url = baseURL.appendingPathComponent("/api/v1/auth/me/")
             request = URLRequest(url: url)
             request.httpMethod = "GET"
 
         case .debugMe:
-            url = baseURL.appendingPathComponent("/api/v1/auth/debug")
+            url = baseURL.appendingPathComponent("/api/v1/auth/debug/")
             request = URLRequest(url: url)
             request.httpMethod = "GET"
 
         case let .adminUnlock(email):
-            url = baseURL.appendingPathComponent("/api/v1/admin/admin/unlock")
+            url = baseURL.appendingPathComponent("/api/v1/admin/admin/unlock/")
             request = URLRequest(url: url)
             request.httpMethod = "POST"
             request.setValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -73,19 +73,19 @@ enum APIEndpoint {
             }
 
         case let .uploadModel(data, boundary):
-            url = baseURL.appendingPathComponent("/api/v1/upload")
+            url = baseURL.appendingPathComponent("/api/v1/upload/")
             request = URLRequest(url: url)
             request.httpMethod = "POST"
             request.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
             request.httpBody = data
 
         case .listModels:
-            url = baseURL.appendingPathComponent("/api/v1/models")
+            url = baseURL.appendingPathComponent("/api/v1/models/")
             request = URLRequest(url: url)
             request.httpMethod = "GET"
 
         case let .estimate(parameters):
-            url = baseURL.appendingPathComponent("/api/v1/estimate/estimates")
+            url = baseURL.appendingPathComponent("/api/v1/estimate/estimates/")
             request = URLRequest(url: url)
             request.httpMethod = "POST"
             request.setValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -97,7 +97,7 @@ enum APIEndpoint {
             }
 
         case .exchangeCode(let code):
-            url = baseURL.appendingPathComponent("/api/v1/auth/exchange")
+            url = baseURL.appendingPathComponent("/api/v1/auth/exchange/")
             request = URLRequest(url: url)
             request.httpMethod = "POST"
             request.setValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -109,12 +109,12 @@ enum APIEndpoint {
             }
 
         case .signout:
-            url = baseURL.appendingPathComponent("/api/v1/auth/signout")
+            url = baseURL.appendingPathComponent("/api/v1/auth/signout/")
             request = URLRequest(url: url)
             request.httpMethod = "POST"
 
         case .filamentPicker:
-            url = baseURL.appendingPathComponent("/api/v1/filaments/picker")
+            url = baseURL.appendingPathComponent("/api/v1/filaments/picker/")
             request = URLRequest(url: url)
             request.httpMethod = "GET"
         }
