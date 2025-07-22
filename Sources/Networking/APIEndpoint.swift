@@ -61,7 +61,7 @@ enum APIEndpoint {
             request.httpMethod = "GET"
 
         case let .adminUnlock(email):
-            url = baseURL.appendingPathComponent("/api/v1/admin/admin/unlock/")
+            url = baseURL.appendingPathComponent("/api/v1/admin/unlock/")
             request = URLRequest(url: url)
             request.httpMethod = "POST"
             request.setValue("application/json", forHTTPHeaderField: "Content-Type")
