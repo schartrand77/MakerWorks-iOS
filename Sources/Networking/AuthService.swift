@@ -20,6 +20,7 @@ protocol AuthServiceProtocol {
 
 final class AuthService: AuthServiceProtocol {
     private let client: NetworkClient
+    private var cancellables = Set<AnyCancellable>()
 
     init(client: NetworkClient = DefaultNetworkClient.shared) {
         self.client = client
@@ -50,6 +51,11 @@ final class AuthService: AuthServiceProtocol {
     }
 
     func signout() {
-        TokenStorage.shared.clear()
+        client.requestVoid(APIEndpoint.signout)
+            .sink(receiveCompletion: { [weak self] _ in
+                TokenStorage.shared.clear()
+                self?.cancellables.removeAll()
+            }, receiveValue: { _ in })
+            .store(in: &cancellables)
     }
 }
