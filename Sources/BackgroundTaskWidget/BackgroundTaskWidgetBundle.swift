@@ -2,8 +2,9 @@ import SwiftUI
 import WidgetKit
 
 @main
-struct BackgroundTaskWidgetBundle: WidgetBundle {
+struct MakerWorksWidgetBundle: WidgetBundle {
     var body: some Widget {
         BackgroundTaskWidget()
+        ProcessingLiveActivityWidget()
     }
 }
