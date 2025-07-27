@@ -52,9 +52,18 @@ struct ProcessingLiveActivityWidget: Widget {
     }
 }
 
+/// Preview provider for the live activity widget.
+/// Previews the core content view instead of the Widget itself, since
+/// `Widget` types don't support `.previewContext`.
 struct ProcessingLiveActivityWidget_Previews: PreviewProvider {
     static var previews: some View {
-        ProcessingLiveActivityWidget()
-            .previewContext(WidgetPreviewContext(family: .systemExtraLarge))
+        HStack(spacing: 8) {
+            RotatingGear(progress: 0.5)
+            Text("50%")
+                .bold()
+                .monospacedDigit()
+        }
+        .padding(.horizontal)
+        .previewContext(WidgetPreviewContext(family: .systemExtraLarge))
     }
 }

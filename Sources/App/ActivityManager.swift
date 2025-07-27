@@ -19,7 +19,17 @@ final class ActivityManager: ObservableObject {
         let content = ProcessingAttributes.ContentState(progress: 0)
 
         do {
-            activity = try Activity.request(attributes: attributes, contentState: content)
+            if #available(iOS 16.2, *) {
+                activity = try Activity.request(
+                    attributes: attributes,
+                    content: ActivityContent(state: content, staleDate: nil)
+                )
+            } else {
+                activity = try Activity.request(
+                    attributes: attributes,
+                    contentState: content
+                )
+            }
             startProgressLoop()
         } catch {
             print("Failed to start Live Activity: \(error)")
@@ -38,7 +48,17 @@ final class ActivityManager: ObservableObject {
             while progress < 1.0 && !Task.isCancelled {
                 try? await Task.sleep(for: .seconds(1))
                 progress = min(progress + 0.05, 1)
-                await activity?.update(using: .init(progress: progress))
+
+                if #available(iOS 16.2, *) {
+                    await activity?.update(
+                        ActivityContent(
+                            state: .init(progress: progress),
+                            staleDate: nil
+                        )
+                    )
+                } else {
+                    await activity?.update(using: .init(progress: progress))
+                }
             }
             if !Task.isCancelled {
                 await endActivity()
@@ -50,7 +70,17 @@ final class ActivityManager: ObservableObject {
         updateTask?.cancel()
         updateTask = nil
         if let activity {
-            await activity.end(using: .init(progress: progress), dismissalPolicy: .immediate)
+            if #available(iOS 16.2, *) {
+                await activity.end(
+                    ActivityContent(state: .init(progress: progress), staleDate: nil),
+                    dismissalPolicy: .immediate
+                )
+            } else {
+                await activity.end(
+                    using: .init(progress: progress),
+                    dismissalPolicy: .immediate
+                )
+            }
         }
         self.activity = nil
         progress = 0

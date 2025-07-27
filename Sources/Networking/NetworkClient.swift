@@ -19,16 +19,16 @@ protocol NetworkClient {
 
 /// Default implementation of the NetworkClient
 final class DefaultNetworkClient: NetworkClient {
-    /// Shared instance used across the app
+    /// Shared instance used across the app.
     ///
-    /// The base URL defaults to the production API but can be overridden at
-    /// runtime by setting the `BACKEND_URL` environment variable. This makes it
-    /// easy to point the app at a local development server when running in the
-    /// simulator.
-    static let shared = DefaultNetworkClient(
-        baseURL: Self.resolveBaseURL(),
-        authenticator: Authenticator.shared
-    )
+    /// Uses a safe pattern to avoid referencing `Self` in a stored property initializer.
+    static let shared: DefaultNetworkClient = {
+        let url = DefaultNetworkClient.resolveBaseURL()
+        return DefaultNetworkClient(
+            baseURL: url,
+            authenticator: Authenticator.shared
+        )
+    }()
 
     /// Determines the base URL for the shared client. In DEBUG builds this will
     /// check for the `BACKEND_URL` environment variable and use it if valid.

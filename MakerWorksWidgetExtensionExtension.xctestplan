@@ -1,0 +1,37 @@
+{
+  "configurations" : [
+    {
+      "id" : "FDAA1A16-89B9-4145-A84C-FDB630CAF1B1",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "codeCoverage" : false,
+    "environmentVariableEntries" : [
+      {
+        "key" : "_XCWidgetKind",
+        "value" : ""
+      },
+      {
+        "key" : "_XCWidgetDefaultView",
+        "value" : "timeline"
+      },
+      {
+        "key" : "_XCWidgetFamily",
+        "value" : "systemMedium"
+      }
+    ],
+    "targetForVariableExpansion" : {
+      "containerPath" : "container:MakerWorks.xcodeproj",
+      "identifier" : "4C9F23552E1B14B5007B3C2D",
+      "name" : "MakerWorks"
+    }
+  },
+  "testTargets" : [
+
+  ],
+  "version" : 1
+}

@@ -15,7 +15,19 @@ final class BackgroundTaskManager: ObservableObject {
         let initialState = BackgroundTaskAttributes.ContentState(progress: 0)
 
         do {
-            activity = try Activity.request(attributes: attributes, contentState: initialState)
+            if #available(iOS 16.2, *) {
+                // New API on iOS 16.2+
+                activity = try Activity.request(
+                    attributes: attributes,
+                    content: ActivityContent(state: initialState, staleDate: nil)
+                )
+            } else {
+                // Fallback for iOS 16.1 and below
+                activity = try Activity.request(
+                    attributes: attributes,
+                    contentState: initialState
+                )
+            }
             startTimer()
         } catch {
             print("Failed to start activity: \(error)")
@@ -33,12 +45,28 @@ final class BackgroundTaskManager: ObservableObject {
         progress += 0.02
         if progress >= 1 {
             progress = 1
-            await activity.end(using: .init(progress: progress), dismissalPolicy: .immediate)
+            if #available(iOS 16.2, *) {
+                await activity.end(
+                    ActivityContent(state: .init(progress: progress), staleDate: nil),
+                    dismissalPolicy: .immediate
+                )
+            } else {
+                await activity.end(using: .init(progress: progress), dismissalPolicy: .immediate)
+            }
             timer?.invalidate()
             timer = nil
             self.activity = nil
         } else {
-            await activity.update(using: .init(progress: progress))
+            if #available(iOS 16.2, *) {
+                await activity.update(
+                    ActivityContent(
+                        state: .init(progress: progress),
+                        staleDate: nil
+                    )
+                )
+            } else {
+                await activity.update(using: .init(progress: progress))
+            }
         }
     }
 }

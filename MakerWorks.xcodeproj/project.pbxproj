@@ -7,10 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4C5929A02E36E0BA003DF032 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C59299F2E36E0BA003DF032 /* WidgetKit.framework */; };
+		4C5929A22E36E0BA003DF032 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C5929A12E36E0BA003DF032 /* SwiftUI.framework */; };
+		4C5929B32E36E0BC003DF032 /* MakerWorksWidgetExtensionExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 4C59299D2E36E0BA003DF032 /* MakerWorksWidgetExtensionExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		4C9F23D52E1B1DB5007B3C2D /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 4C9F23D42E1B1DB2007B3C2D /* README.md */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		4C5929B12E36E0BC003DF032 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4C9F234E2E1B14B5007B3C2D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4C59299C2E36E0BA003DF032;
+			remoteInfo = MakerWorksWidgetExtensionExtension;
+		};
 		4C9F23642E1B14B6007B3C2D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 4C9F234E2E1B14B5007B3C2D /* Project object */;
@@ -27,7 +37,25 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		4C5929B82E36E0BC003DF032 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				4C5929B32E36E0BC003DF032 /* MakerWorksWidgetExtensionExtension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		4C59299D2E36E0BA003DF032 /* MakerWorksWidgetExtensionExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = MakerWorksWidgetExtensionExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		4C59299F2E36E0BA003DF032 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		4C5929A12E36E0BA003DF032 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		4C5929BF2E36E83C003DF032 /* MakerWorksWidgetExtensionExtension.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = MakerWorksWidgetExtensionExtension.xctestplan; sourceTree = "<group>"; };
 		4C9DF7752E1C05AF00ED145E /* MakerWorks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MakerWorks.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C9DF7762E1C05AF00ED145E /* MakerWorksTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MakerWorksTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C9DF7772E1C05AF00ED145E /* MakerWorksUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MakerWorksUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -35,34 +63,59 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		4C5929B72E36E0BC003DF032 /* Exceptions for "MakerWorksWidgetExtension" folder in "MakerWorksWidgetExtensionExtension" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 4C59299C2E36E0BA003DF032 /* MakerWorksWidgetExtensionExtension */;
+		};
+		4C5929BA2E36E0DC003DF032 /* Exceptions for "Sources" folder in "MakerWorksWidgetExtensionExtension" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				BackgroundTaskWidget/BackgroundTaskAttributes.swift,
+				BackgroundTaskWidget/BackgroundTaskWidget.swift,
+				BackgroundTaskWidget/BackgroundTaskWidgetBundle.swift,
+			);
+			target = 4C59299C2E36E0BA003DF032 /* MakerWorksWidgetExtensionExtension */;
+		};
 		4CDBFA4F2E1BEDF1006C8620 /* Exceptions for "Sources" folder in "MakerWorks" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
+				BackgroundTaskWidget/BackgroundTaskAttributes.swift,
+				BackgroundTaskWidget/BackgroundTaskWidget.swift,
+				BackgroundTaskWidget/BackgroundTaskWidgetBundle.swift,
 				Resources/Info/Info.plist,
+				Tests/MakerWorksTests/AsyncNetworkClientTests.swift,
 				Tests/MakerWorksTests/AuthenticatorHeaderTests.swift,
+				Tests/MakerWorksTests/AuthServiceAuthFlowTests.swift,
+				Tests/MakerWorksTests/AuthServiceTests.swift,
 				Tests/MakerWorksTests/AuthTests.swift,
 				Tests/MakerWorksTests/EstimateViewModelTests.swift,
 				Tests/MakerWorksTests/FavoritesManagerTests.swift,
 				Tests/MakerWorksTests/NetworkClientTests.swift,
+				Tests/MakerWorksTests/SignupViewModelTests.swift,
 				Tests/MakerWorksTests/TokenStorageTests.swift,
-                                Tests/MakerWorksTests/UploadEndpointTests.swift,
-                                Tests/MakerWorksTests/AuthServiceTests.swift,
-                                Tests/MakerWorksUITests/LoginUITests.swift,
+				Tests/MakerWorksTests/UploadEndpointTests.swift,
+				Tests/MakerWorksUITests/LoginUITests.swift,
 			);
 			target = 4C9F23552E1B14B5007B3C2D /* MakerWorks */;
 		};
 		4CDBFA502E1BEDF1006C8620 /* Exceptions for "Sources" folder in "MakerWorksTests" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
+				Tests/MakerWorksTests/AsyncNetworkClientTests.swift,
 				Tests/MakerWorksTests/AuthenticatorHeaderTests.swift,
+				Tests/MakerWorksTests/AuthServiceAuthFlowTests.swift,
+				Tests/MakerWorksTests/AuthServiceTests.swift,
 				Tests/MakerWorksTests/AuthTests.swift,
 				Tests/MakerWorksTests/EstimateViewModelTests.swift,
 				Tests/MakerWorksTests/FavoritesManagerTests.swift,
 				Tests/MakerWorksTests/NetworkClientTests.swift,
+				Tests/MakerWorksTests/SignupViewModelTests.swift,
 				Tests/MakerWorksTests/TokenStorageTests.swift,
-                                Tests/MakerWorksTests/UploadEndpointTests.swift,
-                                Tests/MakerWorksTests/AuthServiceTests.swift,
-                        );
+				Tests/MakerWorksTests/UploadEndpointTests.swift,
+			);
 			target = 4C9F23622E1B14B6007B3C2D /* MakerWorksTests */;
 		};
 		4CE544E02E2E67830046196A /* Exceptions for "Sources" folder in "MakerWorksUITests" target */ = {
@@ -75,12 +128,21 @@
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
+		4C5929A32E36E0BA003DF032 /* MakerWorksWidgetExtension */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				4C5929B72E36E0BC003DF032 /* Exceptions for "MakerWorksWidgetExtension" folder in "MakerWorksWidgetExtensionExtension" target */,
+			);
+			path = MakerWorksWidgetExtension;
+			sourceTree = "<group>";
+		};
 		4CDBFA042E1BEC84006C8620 /* Sources */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
 				4CDBFA4F2E1BEDF1006C8620 /* Exceptions for "Sources" folder in "MakerWorks" target */,
 				4CDBFA502E1BEDF1006C8620 /* Exceptions for "Sources" folder in "MakerWorksTests" target */,
 				4CE544E02E2E67830046196A /* Exceptions for "Sources" folder in "MakerWorksUITests" target */,
+				4C5929BA2E36E0DC003DF032 /* Exceptions for "Sources" folder in "MakerWorksWidgetExtensionExtension" target */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -88,6 +150,15 @@
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		4C59299A2E36E0BA003DF032 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4C5929A22E36E0BA003DF032 /* SwiftUI.framework in Frameworks */,
+				4C5929A02E36E0BA003DF032 /* WidgetKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		4C9F23532E1B14B5007B3C2D /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -112,20 +183,55 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4C59299E2E36E0BA003DF032 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				4C59299F2E36E0BA003DF032 /* WidgetKit.framework */,
+				4C5929A12E36E0BA003DF032 /* SwiftUI.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		4C9F234D2E1B14B5007B3C2D = {
 			isa = PBXGroup;
 			children = (
+				4C5929BF2E36E83C003DF032 /* MakerWorksWidgetExtensionExtension.xctestplan */,
 				4CDBFA042E1BEC84006C8620 /* Sources */,
 				4C9F23D42E1B1DB2007B3C2D /* README.md */,
 				4C9DF7752E1C05AF00ED145E /* MakerWorks.app */,
 				4C9DF7762E1C05AF00ED145E /* MakerWorksTests.xctest */,
 				4C9DF7772E1C05AF00ED145E /* MakerWorksUITests.xctest */,
+				4C59299D2E36E0BA003DF032 /* MakerWorksWidgetExtensionExtension.appex */,
+				4C5929A32E36E0BA003DF032 /* MakerWorksWidgetExtension */,
+				4C59299E2E36E0BA003DF032 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		4C59299C2E36E0BA003DF032 /* MakerWorksWidgetExtensionExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4C5929B42E36E0BC003DF032 /* Build configuration list for PBXNativeTarget "MakerWorksWidgetExtensionExtension" */;
+			buildPhases = (
+				4C5929992E36E0BA003DF032 /* Sources */,
+				4C59299A2E36E0BA003DF032 /* Frameworks */,
+				4C59299B2E36E0BA003DF032 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				4C5929A32E36E0BA003DF032 /* MakerWorksWidgetExtension */,
+			);
+			name = MakerWorksWidgetExtensionExtension;
+			packageProductDependencies = (
+			);
+			productName = MakerWorksWidgetExtensionExtension;
+			productReference = 4C59299D2E36E0BA003DF032 /* MakerWorksWidgetExtensionExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		4C9F23552E1B14B5007B3C2D /* MakerWorks */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4C9F23772E1B14B6007B3C2D /* Build configuration list for PBXNativeTarget "MakerWorks" */;
@@ -133,10 +239,12 @@
 				4C9F23522E1B14B5007B3C2D /* Sources */,
 				4C9F23532E1B14B5007B3C2D /* Frameworks */,
 				4C9F23542E1B14B5007B3C2D /* Resources */,
+				4C5929B82E36E0BC003DF032 /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				4C5929B22E36E0BC003DF032 /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
 				4CDBFA042E1BEC84006C8620 /* Sources */,
@@ -195,9 +303,12 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1630;
+				LastSwiftUpdateCheck = 1640;
 				LastUpgradeCheck = 1630;
 				TargetAttributes = {
+					4C59299C2E36E0BA003DF032 = {
+						CreatedOnToolsVersion = 16.4;
+					};
 					4C9F23552E1B14B5007B3C2D = {
 						CreatedOnToolsVersion = 16.3;
 					};
@@ -231,11 +342,19 @@
 				4C9F23552E1B14B5007B3C2D /* MakerWorks */,
 				4C9F23622E1B14B6007B3C2D /* MakerWorksTests */,
 				4C9F236C2E1B14B6007B3C2D /* MakerWorksUITests */,
+				4C59299C2E36E0BA003DF032 /* MakerWorksWidgetExtensionExtension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		4C59299B2E36E0BA003DF032 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		4C9F23542E1B14B5007B3C2D /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -261,6 +380,13 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		4C5929992E36E0BA003DF032 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		4C9F23522E1B14B5007B3C2D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -285,6 +411,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		4C5929B22E36E0BC003DF032 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4C59299C2E36E0BA003DF032 /* MakerWorksWidgetExtensionExtension */;
+			targetProxy = 4C5929B12E36E0BC003DF032 /* PBXContainerItemProxy */;
+		};
 		4C9F23652E1B14B6007B3C2D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 4C9F23552E1B14B5007B3C2D /* MakerWorks */;
@@ -298,6 +429,60 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		4C5929B52E36E0BC003DF032 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = MakerWorksWidgetExtension/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = MakerWorksWidgetExtension;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = techpunk.MakerWorks.MakerWorksWidgetExtension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		4C5929B62E36E0BC003DF032 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = MakerWorksWidgetExtension/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = MakerWorksWidgetExtension;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = techpunk.MakerWorks.MakerWorksWidgetExtension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		4C9F23752E1B14B6007B3C2D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -534,6 +719,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		4C5929B42E36E0BC003DF032 /* Build configuration list for PBXNativeTarget "MakerWorksWidgetExtensionExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4C5929B52E36E0BC003DF032 /* Debug */,
+				4C5929B62E36E0BC003DF032 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		4C9F23512E1B14B5007B3C2D /* Build configuration list for PBXProject "MakerWorks" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
