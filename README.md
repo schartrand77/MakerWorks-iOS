@@ -61,6 +61,11 @@ open MakerWorks.xcodeproj
 2. Choose an iOS simulator or connect a device.
 3. Press **Run** to build and launch the app.
 
+#### Connecting to a local backend
+If you're running the API locally (for example at `http://localhost:8000`), set
+the `BACKEND_URL` environment variable in the run scheme to the local URL. The
+app will automatically use this value when built in Debug mode.
+
 ### Tests
 The repository includes unit and UI tests. Run them from Xcode using **Product → Test**.
 
