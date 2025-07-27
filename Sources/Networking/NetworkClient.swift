@@ -19,10 +19,29 @@ protocol NetworkClient {
 
 /// Default implementation of the NetworkClient
 final class DefaultNetworkClient: NetworkClient {
+    /// Shared instance used across the app
+    ///
+    /// The base URL defaults to the production API but can be overridden at
+    /// runtime by setting the `BACKEND_URL` environment variable. This makes it
+    /// easy to point the app at a local development server when running in the
+    /// simulator.
     static let shared = DefaultNetworkClient(
-        baseURL: URL(string: "https://api.makerworks.app")!,
+        baseURL: Self.resolveBaseURL(),
         authenticator: Authenticator.shared
     )
+
+    /// Determines the base URL for the shared client. In DEBUG builds this will
+    /// check for the `BACKEND_URL` environment variable and use it if valid.
+    /// Otherwise the production API URL is returned.
+    private static func resolveBaseURL() -> URL {
+        #if DEBUG
+        if let override = ProcessInfo.processInfo.environment["BACKEND_URL"],
+           let url = URL(string: override) {
+            return url
+        }
+        #endif
+        return URL(string: "https://api.makerworks.app")!
+    }
 
     /// Base API endpoint used when constructing requests
     ///

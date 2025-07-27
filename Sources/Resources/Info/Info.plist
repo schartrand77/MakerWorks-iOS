@@ -37,10 +37,15 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
-	<key>UIApplicationSceneManifest</key>
-	<dict>
-		<key>UIApplicationSupportsMultipleScenes</key>
-		<false/>
-	</dict>
+        <key>UIApplicationSceneManifest</key>
+        <dict>
+                <key>UIApplicationSupportsMultipleScenes</key>
+                <false/>
+        </dict>
+        <key>NSAppTransportSecurity</key>
+        <dict>
+                <key>NSAllowsArbitraryLoads</key>
+                <true/>
+        </dict>
 </dict>
 </plist>
