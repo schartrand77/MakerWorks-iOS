@@ -36,10 +36,9 @@ struct SignUpView: View {
                 }) {
                     Text(viewModel.isLoading ? "Signing up…" : "Sign Up")
                         .frame(maxWidth: .infinity)
-                        .padding()
-                        .background(.ultraThinMaterial)
-                        .clipShape(RoundedRectangle(cornerRadius: 20))
                 }
+                .buttonStyle(PlainButtonStyle())
+                .liquidGlass(cornerRadius: 20)
                 .disabled(viewModel.isLoading)
                 .padding(.horizontal)
 

@@ -43,10 +43,9 @@ struct LoginView: View {
                 }) {
                     Text(viewModel.isLoading ? "Signing in…" : "Sign In")
                         .frame(maxWidth: .infinity)
-                        .padding()
-                        .background(.ultraThinMaterial)
-                        .clipShape(RoundedRectangle(cornerRadius: 20))
                 }
+                .buttonStyle(PlainButtonStyle())
+                .liquidGlass(cornerRadius: 20)
                 .disabled(viewModel.isLoading)
                 .padding(.horizontal)
 
