@@ -41,6 +41,19 @@ MakerWorks iOS is a **next-gen app for browsing, hosting, and managing 3D models
 - 🧼 Clean architecture
 - 🎨 VisionOS-inspired design language
 
+## 🎨 Brand Palette
+
+- **Primary (Bright Orange)**: `#FF6A1F`
+- **Secondary (Black)**: `#121212`
+- **Accent (Silver)**: `#C0C0C0`
+- **Background/Neutral (White)**: `#FFFFFF`
+
+### Gradient Options
+
+- **Orange → Silver**: `linear-gradient(135deg, #FF6A1F 0%, #C0C0C0 100%)`
+- **Black → Orange (Dark Mode)**: `linear-gradient(180deg, #121212 0%, #FF6A1F 100%)`
+- **White → Silver (Light Mode)**: `linear-gradient(180deg, #FFFFFF 0%, #C0C0C0 100%)`
+
 ---
 
 ## 🚀 Getting Started
