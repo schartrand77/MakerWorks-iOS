@@ -96,8 +96,9 @@
 				Tests/MakerWorksTests/NetworkClientTests.swift,
 				Tests/MakerWorksTests/SignupViewModelTests.swift,
 				Tests/MakerWorksTests/TokenStorageTests.swift,
-				Tests/MakerWorksTests/UploadEndpointTests.swift,
-				Tests/MakerWorksUITests/LoginUITests.swift,
+                                Tests/MakerWorksTests/UploadEndpointTests.swift,
+                                Tests/MakerWorksTests/BrowseViewModelTests.swift,
+                                Tests/MakerWorksUITests/LoginUITests.swift,
 			);
 			target = 4C9F23552E1B14B5007B3C2D /* MakerWorks */;
 		};
@@ -114,8 +115,9 @@
 				Tests/MakerWorksTests/NetworkClientTests.swift,
 				Tests/MakerWorksTests/SignupViewModelTests.swift,
 				Tests/MakerWorksTests/TokenStorageTests.swift,
-				Tests/MakerWorksTests/UploadEndpointTests.swift,
-			);
+                                Tests/MakerWorksTests/UploadEndpointTests.swift,
+                                Tests/MakerWorksTests/BrowseViewModelTests.swift,
+                        );
 			target = 4C9F23622E1B14B6007B3C2D /* MakerWorksTests */;
 		};
 		4CE544E02E2E67830046196A /* Exceptions for "Sources" folder in "MakerWorksUITests" target */ = {
